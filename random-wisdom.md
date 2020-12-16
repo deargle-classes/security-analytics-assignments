@@ -13,3 +13,9 @@ Also look into Rubber-Duck Debugging.
 
 Learning to ask good questions is essential to finding answers, even if you're
 only asking them to your rubber duck. See [StackOverflow's guide on "How do I ask a good question?"](https://stackoverflow.com/help/how-to-ask)
+
+
+# What should I do when I start making money?
+
+I am a disciple of Frugal Professor's
+[Hierarchy of Savings](https://frugalprofessor.com/hierarchy-of-savings/), 10/10 would recommend.
