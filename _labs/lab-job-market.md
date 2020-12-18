@@ -3,6 +3,7 @@ title: Lab -- Job Market
 learning_objectives:
   - Create a resume focused on business analytics
   - Identify analytics-related jobs of interest to them
+order: 3
 ---
 
 # Write an analytics-focused resume

@@ -5,6 +5,7 @@ learning_objectives:
   - Write documents using Markdown
   - Demonstrate introductory mastery Git, Github, and Github Pages workflow
     using GitHub Desktop and Atom
+order: 2
 ---
 
 # Github

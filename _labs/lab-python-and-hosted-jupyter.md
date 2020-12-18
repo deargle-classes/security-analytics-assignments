@@ -2,6 +2,7 @@
 title: Lab -- Python for Data Science
 learning_objectives:
   - demonstrate basic data science skills with python
+order: 1
 ---
 
 

@@ -3,17 +3,20 @@ layout: default
 ---
 
 <h1>{{ page.title }}</h1>
+<hr/>
 
-
-{% if page.learning_objective %}
+{% if page.learning_objectives %}
 <h1>Learning Objectives</h1>
 
 At the conclusion of this lab, students will be able to:
 
+<ul>
 {% for objective in page.learning_objectives %}
-  {{ objective }}
+  <li>{{ objective }}</li>
 {% endfor %}
+</ul>
 
 {% endif %}
 
+<h1>Content</h1>
 {{ content }}
