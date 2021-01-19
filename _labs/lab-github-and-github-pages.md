@@ -8,7 +8,7 @@ learning_objectives:
 order: 2
 ---
 
-# Github
+## Github
 
 * Create a nice github account
 
@@ -26,12 +26,12 @@ order: 2
 
   Using [this guide](https://guides.github.com/features/pages/), make a [GitHub Pages](https://pages.github.com/) site.
 
-# Github Desktop
+## Github Desktop
 
 * Install [GitHub Desktop](https://desktop.github.com/)
 * Use GitHub Desktop to clone your github pages repository to your local computer
 
-# Atom and Markdown
+## Atom and Markdown
 
 You need a nice text editor. I like [Atom](https://atom.io/). For this
 lab, download and install Atom. After, if you hate it, you can abandon it.

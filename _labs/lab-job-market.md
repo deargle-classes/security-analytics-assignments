@@ -6,9 +6,9 @@ learning_objectives:
 order: 3
 ---
 
-# Write an analytics-focused resume
+## Write an analytics-focused resume
 
-## Audience and Goal
+### Audience and Goal
 
 Write for bots, humans, and bot-humans.
 Bots scan for keywords, humans look for fuzzy positive signals, and bot-humans
@@ -28,7 +28,7 @@ and then work down.
 Your job is to signal that you are _business-analytics relevant_.
 
 
-## Content
+### Content
 Analytics-first! Classes, projects, skills. Be honest, but also proud!
 
 Focus first on
@@ -49,13 +49,13 @@ As you write your resume, you may identify gaps you want to be able to fill, or
 portfolio pieces you wish you had. Create them! Then, come back and update your resume.
 
 
-### Q: How do I tailor my resume content to a specific job application?
+#### Q: How do I tailor my resume content to a specific job application?
 
 Look for keywords in the job listing, and (with honesty!) integrate those terms
 and desired attributes into your resume. This is for the bots and the human-bots.
 
 
-### Q: What about the "security" stuff?
+#### Q: What about the "security" stuff?
 
 I predict that the majority of the jobs that you will apply for will not be related
 to security analytics. Therefore, emphasize _business analytics_ first, and add
@@ -73,12 +73,12 @@ which will have a high "cool!" factor. Just remember to explain the security con
 to a lay audience.
 
 
-### Q: Can I see some example resumes?
+#### Q: Can I see some example resumes?
 
 Maybe? I asked the previous security analytics generations if they'd share, stay tuned.
 
 
-## Format
+### Format
 
 You may often need to basically copy-paste your resume into job applications.
 Having your resume in markdown format may help streamline that process.
@@ -88,7 +88,7 @@ Write your resume in markdown. Post it as a new page on your GitHub Pages websit
 **Deliverable: Submit a link to your website-hosted resume.**
 
 
-# Job Search
+## Job Search
 
 I absolutely hate searching LinkedIn for jobs. But, it's probably one of the best places
 to look.
@@ -101,20 +101,20 @@ Also, I asked my engineering neighbor what he does for job search:
 
 
 
-## FAQ:
+### FAQ:
 
-### How many positions should I apply for?
+#### How many positions should I apply for?
 
 Probably depends on the locale to which you are applying. Colorado Denver area is
 an extremely high-supply (tough) analytics market right now though.
 
 
-## Search Terms
+### Search Terms
 
 Todo: ask past grads to share their experiences.
 
 
-## Deliverable
+### Deliverable
 
 **Deliverable: Submit links to three jobs that you're interested in.**
 

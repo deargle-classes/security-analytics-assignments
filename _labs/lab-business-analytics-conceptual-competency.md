@@ -17,7 +17,7 @@ A lot of the courses in your program focus on _interpreting_ predictive models, 
 
 Seriously, I cannot endorse this book highly enough. Your deadline for reading it is: yesterday. Always yesterday. Read it. Be able to teach each chapter.
 
-# Deliverable
+## Deliverable
 
 On my [business analytics GitHub Pages website](https://classes.daveeargle.com/business-analytics/), you will see a list of topics in the order that I taught them, and corresponding readings from "the book." Many of the topics have corresponding quizzes on canvas -- I pulled out questions from the two exams over the course,
 and I grouped them by class topic. (Students complained that the class content and exams were too complex for ugrads, and that
