@@ -36,7 +36,7 @@ adding all of your analytics-related feathers. Add content like the following:
 
 * Degree title
 * All job and educational experience to show job continuity
-  * Emphasize analytics-_relevant_ job experience
+  * Emphasize _analytics-relevant_ job experience
 * Specific related courses with verbose names, with high-level learning outcomes
   * See [example learning outcome verbs here](https://citl.indiana.edu/teaching-resources/course-design/developing-learning-outcomes/index.html). Tailor course-provided ones
     (check the syllabus), or write your own if you need to.
@@ -90,16 +90,8 @@ Write your resume in markdown. Post it as a new page on your GitHub Pages websit
 
 ## Job Search
 
-I absolutely hate searching LinkedIn for jobs. But, it's probably one of the best places
-to look.
-
-Also, I asked my engineering neighbor what he does for job search:
-
-> Indeed.com is a decent place to start. Then I start looking at the companies, what they do, who their competitors are. Then check out their competitors
->
-> I also reach out to any vendors I've worked with in the past. A lot of times they have some good insights into what companies are hiring.
-
-
+Past graduates, friends, and neighbors have been kind enough to share their job search
+experiences with me. I've included some insights and quotes from them in this section.
 
 ### FAQ:
 
@@ -109,9 +101,61 @@ Probably depends on the locale to which you are applying. Colorado Denver area i
 an extremely high-supply (tough) analytics market right now though.
 
 
+#### What are good search terms?
+
+* “data analyst”
+* “analyst”
+* “data scientist”
+* “business analytics”
+* “Business Analyst”
+* “Data Analyst”
+* “Data Scientist”,
+* “Financial Analyst”
+
+#### What are good job platforms to use?
+
+LinkedIn and BuiltIn Colorado, Handshake, Indeed, Dice, Ziprecruiter, ConnectingColorado.
+
+See quotes below from alumn regarding platforms.
+
+## Quotes about job search experience from past student
+
+_Important context: Many of the quotes below are from applicants who were on the market during Covid-19 peak_
+
+### Platforms Used
+
+> I found BuiltIn to be by FAR the worst, personally, because they seemed to always be asking for "unicorns" and people with a [ton] of experience in very, very specific areas. I very rarely saw anything I was even remotely qualified for and the one company I was qualified for (landed a 2nd interview) [toyed] me around for several weeks before getting around to rejecting me.
+
+> LinkedIn and ZipRecruiter had the benefit of "1 click apply" which I did use fairly frequently to spam some more applications out there.
+
+> LinkedIn had the best variety and was helpful when they have the “Easy Apply option”.
+
+> Handshake was really helpful mainly to see which companies were coming in to talk to us and have table sits and stuff like that.
+
+
 ### Search Terms
 
-Todo: ask past grads to share their experiences.
+> “Data Scientist” (this one always got me much more technical/experienced roles)
+
+> sometimes I would just Google “SQL”, “Python”, “R”, “Regression” (any other buzzword that would help me get a dang job)
+
+> I found searches on "data analyst" or "data science" were only returning hits on job descriptions asking for 5+ years of python expertise and I never was able to get past phone screens for them.
+
+
+### Method
+
+> I started looking at industry specific data roles and going through companies I was interested in working for. Then I would go look on their actual career site. I used LinkedIn and built in Colorado to get a list of companies in the area.
+>
+> [Eventually] I just pumped out applications and didn’t tailor mine to specific roles. I just played the numbers game and the first one that offered me a salary I was happy with I accepted.
+
+> My resume was kept the same for every app sent but my cover letter was always tailored to the role and then the specific project or coding language I used.
+
+From someone who has been in the engineering indstury for a while:
+
+> Indeed.com is a decent place to start. Then I start looking at the companies, what they do, who their competitors are. Then check out their competitors
+>
+> I also reach out to any vendors I've worked with in the past. A lot of times they have some good insights into what companies are hiring.
+
 
 
 ### Deliverable
