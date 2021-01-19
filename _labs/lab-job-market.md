@@ -75,7 +75,8 @@ to a lay audience.
 
 #### Q: Can I see some example resumes?
 
-Maybe? I asked the previous security analytics generations if they'd share, stay tuned.
+Past grads have been kind enough to share their resumes on the [#resume-help](https://securityanaly-gpm5224.slack.com/archives/C01HPF2T2CQ) channel
+on our multigenerational security analytics workspace. Ask me for an invite to that workspace if you need one.
 
 
 ### Format
