@@ -35,7 +35,7 @@ To prepare you for what you are about to do, read the following two guides from 
 
 ~~Using [this guide](https://guides.github.com/features/pages/), make a [GitHub Pages](https://pages.github.com/) site.~~
 
-To make a GitHub Pages portfolio website,
+Most of the github-provided pre-baked pages themes are tailored to source code. To make a GitHub Pages portfolio website,
 I recommend that you use [@evanca's 'quick-portfolio' theme](https://github.com/evanca/quick-portfolio). To do so,
 follow [@evanca's instructions on Medium.](https://blog.usejournal.com/set-up-your-portfolio-website-in-less-than-10-minutes-with-github-pages-d0efa8ff56fd). Following this guide, you could do everything on the github website, but I want you to also learn
 how you can make changes to files locally, and then push (upload) your changes. So only follow **Steps 1 through 5** for now.
