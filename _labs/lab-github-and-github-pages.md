@@ -18,11 +18,15 @@ LinkedIn profile." I say pfft. Make a good github
 * Set a nice profile picture for yourself.
 * Set your name and organizational affiliation
 
-**Deliverable: submit a link to your github profile: e.g., https://github.com/deargle**
+<div class='alert alert-deliverable'>
+Deliverable: submit a link to your github profile: e.g., https://github.com/deargle
+</div>
 
 Now, complete the [GitHub Hello World project](https://guides.github.com/activities/hello-world/)
 
-**Deliverable: submit a link to your github hello-world repository**
+<div class='alert alert-deliverable'>
+Deliverable: submit a link to your github hello-world repository
+</div>
 
 ## Read about Git and the GitHub flow
 
@@ -59,7 +63,32 @@ lab, download, install, and use Atom. After, if you hate it, you can abandon it.
 
 * Download and install Atom
 * Use Github Desktop to open your github pages repository in Atom
+
+  ![github-desktop-open-in-editor]({{ 'assets/images/github-desktop-atom.png' | relative_url }})
+
+  **Background information:** Your clone includes a `.git` folder, in which there is a `.git/config` file, which
+  GitHub Desktop will populate with information about where the clone _came_ from.
+  This makes it possible for git client tools, such as the one bundled with Atom,
+  to know _where_ to sync (push) changes to by default. Find and open this file in
+  a text editor to see for yourself.
+
+  But in order for Atom's
+  bundled git client to know about that folder and config file, the clone folder needs to be
+  opened _as a folder_ within Atom, as opposed to you using Atom to open and edit an
+  individual file within the repo, were you to manually navigate to the clone folder
+  with a file explorer and access the files that way. If you use GitHub Desktop
+  to open your clone, this should be automatic.
+
+  Git repositories typically only contain one `.git` folder, at the root of the
+  repository. IDEs such as Atom therefore look to the root of the currently opened
+  folder for a `.git` folder.
+
 * Hook Atom up to GitHub ([the package comes bundled with Atom, because All Hail Octocat](https://github.atom.io/)).
+
+  Click on the Github tab towards the bottom-right of your Atom window. Complete its
+  login form.
+
+  ![atom-github-tab]({{ 'assets/images/atom-github-tab.png' | relative_url }})
 
 Next, customize your `index.md` using the Markdown language, and then push your
 local changes to your github-hosted GitHub Pages repository.
@@ -76,9 +105,37 @@ local changes to your github-hosted GitHub Pages repository.
 * Using Atom, commit and push your changes. Check that your website has updated! It might take a minute. You should
   get an email from github if you broke anything with your `_config.yml` edits.
 
-**Deliverable: A link to your github pages website (e.g., https://deargle.github.io), and also to its backing repository (e.g., https://github.com/deargle/deargle.github.io)**
+<div class='alert alert-deliverable'>
+Deliverable: A link to your github pages website (e.g., https://deargle.github.io), and also to its backing repository (e.g., https://github.com/deargle/deargle.github.io)
+</div>
 
-**Deliverable: Screenshot committing and pushing your changes, demonstrating local git workflow.**
+<div class='alert alert-deliverable'>
+Deliverable: Screenshot committing and pushing your changes, demonstrating local git workflow.
+</div>
 
 Warning! Web dev is a sinkhole activity! You can spend _days_ on this, at the
 expense of your other work. Just stick to getting the basics up, then _get out_.
+
+## Supplemental
+
+### Using a custom domain for your `<username>.github.io` site
+
+My website, <https://daveeargle.com>, actually points to a GitHub Pages site at
+<https://github.com/deargle/deargle.github.io>. If you want a swanky domain name too,
+then you can [follow these instructions](https://docs.github.com/en/github/working-with-github-pages/managing-a-custom-domain-for-your-github-pages-site). The general idea is:
+
+1. Purchase a domain name from a domain name
+   registrar such as [Cloudflare](https://cloudflare.com).
+
+2. Add a CNAME DNS record for your domain, setting your domain name to be a CNAME
+   for your github-provided `<username>.github.io` domain.
+
+   By default, your domain name registrar will also provide DNS service for you.
+
+3. On the Settings tab for your github repository, add your purchased domain name
+   to the "Custom domain" field, and save.
+
+   This will add a file called `CNAME` to the root of your repository, with your
+   domain name as its contents.
+
+3. ??? Profit.
