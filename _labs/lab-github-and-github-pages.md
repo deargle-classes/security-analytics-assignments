@@ -99,6 +99,25 @@ local changes to your github-hosted GitHub Pages repository.
   [@evanca's instructions on Medium.](https://blog.usejournal.com/set-up-your-portfolio-website-in-less-than-10-minutes-with-github-pages-d0efa8ff56fd) **steps 6 through 9**. In these steps, you will do the following:
 
   - upload a profile picture
+
+    You need to copy your image file into your repository, using something like file explorer. You can quickly navigate
+    to where your repo is stored on disk by using the "View the files of your repository in \[Explorer\|Finder\]" menu option in
+    GitHub Desktop. Commit the image file to your repository.
+
+    Also, github has a special url format that will let you fetch a _raw file_ as opposed to a _view of the file wrapped in the GitHub UI_.
+    To get the raw file, append `?raw=true` to the url.
+
+    See for yourself. Visit the forked repository's
+    logo file _without_ using `?raw=true` here: <https://github.com/evanca/quick-portfolio/blob/master/images/demo.gif>. Note
+    that it is wrapped in the GitHub UI. Then, visit it _with_ `?raw=true`: <https://github.com/evanca/quick-portfolio/blob/master/images/demo.gif?raw=true>. You get the raw image file. This is what you need, so that your logo can be
+    displayed in your website.
+
+    Note that the forked repository does this:
+
+        # in _config.yml
+        logo: "/images/logo.png?raw=true"
+
+    Even though the log file stored in their repository's `/images/` folder is named just `logo.png`.
   - customize your `_config.yml`
   - customize your `index.md`
 
