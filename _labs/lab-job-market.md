@@ -164,6 +164,9 @@ From someone who has been in the engineering indstury for a while:
 
 ### Deliverable
 
-**Deliverable: Submit links to three jobs that you're interested in.**
 
 **Deliverable: Describe what method you are using to manage your job search process.**
+
+**Deliverable: Submit links to three jobs that you're interested in.**
+
+My intention in having you describe your method to me is to make sure you actually _have_ a method, and that you've actually _looked_ at job postings.
