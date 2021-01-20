@@ -100,9 +100,13 @@ local changes to your github-hosted GitHub Pages repository.
 
   - upload a profile picture
 
+    #### Getting the image file into your repository
+
     You need to copy your image file into your repository, using something like file explorer. You can quickly navigate
     to where your repo is stored on disk by using the "View the files of your repository in \[Explorer\|Finder\]" menu option in
     GitHub Desktop. Commit the image file to your repository.
+
+    #### Setting the image url
 
     Also, github has a special url format that will let you fetch a _raw file_ as opposed to a _view of the file wrapped in the GitHub UI_.
     To get the raw file, append `?raw=true` to the url.
