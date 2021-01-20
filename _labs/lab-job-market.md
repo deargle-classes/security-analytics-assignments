@@ -82,11 +82,10 @@ on our multigenerational security analytics workspace. Ask me for an invite to t
 ### Format
 
 You may often need to basically copy-paste your resume into job applications.
-Having your resume in markdown format may help streamline that process.
+Having your resume in markdown format may help streamline that process. Considering writing  your resume in markdown, and posting it as a new page on your GitHub Pages website.
 
-Write your resume in markdown. Post it as a new page on your GitHub Pages website.
-
-**Deliverable: Submit a link to your website-hosted resume.**
+**Deliverable: Submit a link to your resume.**
+**Optional Deliverable: Make a markdown version of your resume. Submit a link to your website-hosted resume.**
 
 
 ## Job Search
@@ -95,6 +94,10 @@ Past graduates, friends, and neighbors have been kind enough to share their job 
 experiences with me. I've included some insights and quotes from them in this section.
 
 ### FAQ:
+
+#### Where can I go for general industry tips and insights?
+
+Try the [/r/analytics](https://reddit.com/r/analytics) subreddit.
 
 #### How many positions should I apply for?
 
