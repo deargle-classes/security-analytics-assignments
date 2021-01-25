@@ -168,6 +168,22 @@ then you can [follow these instructions](https://docs.github.com/en/github/worki
 Read [this github guide](https://docs.github.com/en/github/working-with-github-pages/testing-your-github-pages-site-locally-with-jekyll).
 The guide will instruct you to install Ruby and Bundler. If you're on windows, one of the coolest ways to get Ruby is to [install a linux distro such as Ubuntu using Windows Subsystem for Linux (WSL)](https://ubuntu.com/wsl). Read below for some hand-holding tips.
 
+
+#### Assuming you're on Windows, do everything from WSL Ubuntu Bash prompt
+
+If you're on Windows, then _do everything from your WSL Ubuntu instance_. Recall
+that to access your instance, open a command prompt and run the command `bash`.
+That done, everything you do from that bash prompt will be done `on Ubuntu`.
+Then, you can follow whatever website instructions for doing something _on Ubuntu_,
+without exception.
+
+For example, the guide will tell you to install Ruby. Do this from wsl-ubuntu-bash following
+the `apt (Debian or Ubuntu)` instructions on <https://www.ruby-lang.org/en/documentation/installation/>:
+
+    $ sudo apt-get install ruby-full
+
+#### General Instructions
+
 General one-time-only steps:
 
 1. Install the Ruby programming language:
@@ -213,18 +229,3 @@ and dynamically rebuild it if any file changes are detected.
 
 Except, if you change your `_config.yml`, you will need to kill your jekyll server and
 restart it.
-
-
-
-#### Assuming you're on Windows, do everything from WSL Ubuntu Bash prompt
-
-If you're on Windows, then _do everything from your WSL Ubuntu instance_. Recall
-that to access your instance, open a command prompt and run the command `bash`.
-That done, everything you do from that bash prompt will be done `on Ubuntu`.
-Then, you can follow whatever website instructions for doing something _on Ubuntu_,
-without exception.
-
-For example, the guide will tell you to install Ruby. Do this from wsl-ubuntu-bash following
-the `apt (Debian or Ubuntu)` instructions on <https://www.ruby-lang.org/en/documentation/installation/>:
-
-    $ sudo apt-get install ruby-full
