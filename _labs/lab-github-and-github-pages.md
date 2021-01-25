@@ -166,4 +166,65 @@ then you can [follow these instructions](https://docs.github.com/en/github/worki
 ### How can I test my changes locally without pushing live?
 
 Read [this github guide](https://docs.github.com/en/github/working-with-github-pages/testing-your-github-pages-site-locally-with-jekyll).
-The guide will instruct you to install Ruby and Bundler. If you're on windows, one of the coolest ways to get Ruby is to [install a linux distro such as Ubuntu using Windows Subsystem for Linux (WSL)](https://ubuntu.com/wsl).
+The guide will instruct you to install Ruby and Bundler. If you're on windows, one of the coolest ways to get Ruby is to [install a linux distro such as Ubuntu using Windows Subsystem for Linux (WSL)](https://ubuntu.com/wsl). Read below for some hand-holding tips.
+
+General one-time-only steps:
+
+1. Install the Ruby programming language:
+
+        sudo apt-get install ruby-full
+
+2. Install Bundler, a ruby package manager:
+
+        gem install bundler
+
+3. From a command prompt, navigate to your github pages repo directory
+
+4. Bundler expects you to have a file called `Gemfile` in your repository root.
+   And, for a GitHub Pages jekyll site, your Gemfile needs to reference the GitHub
+   [`pages-gem`](https://github.com/github/pages-gem). So, create a Gemfile
+   and set its content:
+
+        cat <<EOF > Gemfile
+        source "https://rubygems.org"
+        gem "github-pages", group: :jekyll_plugins
+        EOF
+
+   Then, run `bundle install`. This will generate a new file called `Gemfile.lock`.
+
+5. You will want to have a file in your repository called `.gitignore` which will prevent
+   you from accidentally committing local-build-related to your github repository.
+   Create a minimal jekyll-themed `.gitignore` file as follows:
+
+        cat <<EOF > .gitignore
+        _site
+        .sass-cache
+        .jekyll-cache
+        .jekyll-metadata
+        vendor
+        EOF
+
+6. Add and commit your new `Gemfile`, `Gemfile.lock`, `.gitignore` files to your repository.
+
+Now, you can launch a jekyll server which will serve your github pages site
+and dynamically rebuild it if any file changes are detected.
+
+      bundle exec jekyll serve
+
+Except, if you change your `_config.yml`, you will need to kill your jekyll server and
+restart it.
+
+
+
+#### Assuming you're on Windows, do everything from WSL Ubuntu Bash prompt
+
+If you're on Windows, then _do everything from your WSL Ubuntu instance_. Recall
+that to access your instance, open a command prompt and run the command `bash`.
+That done, everything you do from that bash prompt will be done `on Ubuntu`.
+Then, you can follow whatever website instructions for doing something _on Ubuntu_,
+without exception.
+
+For example, the guide will tell you to install Ruby. Do this from wsl-ubuntu-bash following
+the `apt (Debian or Ubuntu)` instructions on <https://www.ruby-lang.org/en/documentation/installation/>:
+
+    $ sudo apt-get install ruby-full
