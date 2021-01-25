@@ -162,3 +162,8 @@ then you can [follow these instructions](https://docs.github.com/en/github/worki
    domain name as its contents.
 
 3. ??? Profit.
+
+### How can I test my changes locally without pushing live?
+
+Read [this github guide](https://docs.github.com/en/github/working-with-github-pages/testing-your-github-pages-site-locally-with-jekyll).
+The guide will instruct you to install Ruby and Bundler. If you're on windows, one of the coolest ways to get Ruby is to [install a linux distro such as Ubuntu using Windows Subsystem for Linux (WSL)](https://ubuntu.com/wsl).

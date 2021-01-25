@@ -38,6 +38,8 @@ collections:
         output: true
     topics:
         output: true
+    questions_and_answers:
+        output: false
 
 
 defaults:
