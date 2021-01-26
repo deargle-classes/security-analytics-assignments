@@ -3,6 +3,23 @@
 
 @import "{{ site.theme }}";
 
+
+// theme overrides
+
+body {
+    background: #212121;
+    border-top: none;
+    border-bottom: none;
+}
+
+#main_content_wrap {
+    background: #f2f2f2;
+    border-top: none;
+    border-bottom: none;
+}
+
+// custom
+
 .page-header {
   padding-bottom: 9px;
   // margin: 40px 0 20px;
@@ -21,4 +38,32 @@
   color: #7e5109;
   background-color: #fdebd0;
   border-color: #fce3bd;
+}
+
+
+// bootstrap-toc <https://afeld.github.io/bootstrap-toc/>
+
+nav[data-toggle="toc"] {
+  top: 42px;
+}
+
+/* small screens */
+@media (max-width: 768px) {
+  /* override stickyness so that the navigation does not follow scrolling */
+  nav[data-toggle="toc"] {
+    margin-bottom: 42px;
+    position: static;
+  }
+
+  /* PICK ONE */
+  /* don't expand nested items, which pushes down the rest of the page when navigating */
+  nav[data-toggle="toc"] .nav .active .nav {
+    display: none;
+  }
+  /* alternatively, if you *do* want the second-level navigation to be shown (as seen on this page on mobile), use this */
+  /*
+  nav[data-toggle='toc'] .nav .nav {
+    display: block;
+  }
+  */
 }
