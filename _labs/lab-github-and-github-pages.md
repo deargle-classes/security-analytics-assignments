@@ -186,15 +186,23 @@ the `apt (Debian or Ubuntu)` instructions on <https://www.ruby-lang.org/en/docum
 
 General one-time-only steps:
 
+1. Update your apt list. This is good to run before trying to install _anything_ via apt. It's like a
+   phonebook that tells ubuntu which packages are available, and where to find them.
+
+        sudo apt update
+
 1. Install the Ruby programming language:
 
-        sudo apt-get install ruby-full
+        sudo apt install ruby-full
 
 2. Install Bundler, a ruby package manager:
 
         gem install bundler
 
-3. From a command prompt, navigate to your github pages repo directory
+3. Navigate your prompt to your github pages repo directory.
+
+   On WSL, your windows filesystem is mounted under `/mnt/c`. For example, my project directory
+   is located at `/mnt/c/Users/deargle/projects/`.
 
 4. Bundler expects you to have a file called `Gemfile` in your repository root.
    And, for a GitHub Pages jekyll site, your Gemfile needs to reference the GitHub
@@ -206,7 +214,11 @@ General one-time-only steps:
         gem "github-pages", group: :jekyll_plugins
         EOF
 
-   Then, run `bundle install`. This will generate a new file called `Gemfile.lock`.
+1. Install "build dependencies" -- ubuntu packages that will be necessary to install some of the gems.
+
+        sudo apt install build-dependencies
+
+5. Then, run `bundle install` (_without_ `sudo`!). This will generate a new file called `Gemfile.lock`.
 
 5. You will want to have a file in your repository called `.gitignore` which will prevent
    you from accidentally committing local-build-related to your github repository.
