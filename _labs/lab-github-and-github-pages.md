@@ -477,7 +477,7 @@ supports blogging as its core feature. It's not hard to tack blogging onto your
 
    I forked the `quick-porfolio` theme and made the above changes to it to enable
    blogging. [View the fork here](https://github.com/deargle/quick-portfolio),
-   and [examine the blog-setting-up commit here]()
+   and [examine the blog-setting-up commit here](https://github.com/deargle/quick-portfolio/commit/45542845516a11254ba6df62b86cddad95f7b7af).
 
    #### Conclusion
 
