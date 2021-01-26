@@ -22,36 +22,3 @@ OpenML.
 <div>{{ dataset.content | markdownify }}</div>
 <a href='#index'>top</a>
 {% endfor %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Other
