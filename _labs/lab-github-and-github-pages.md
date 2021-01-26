@@ -370,7 +370,7 @@ supports blogging as its core feature. It's not hard to tack blogging onto your
    `author`:
 
    ~~~yaml
-   `author: put your name here`
+   author: put your name here
    ~~~
 
    Shut down (ctrl+c) and restart your local jekyll
