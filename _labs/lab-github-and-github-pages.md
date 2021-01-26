@@ -136,10 +136,14 @@ Deliverable: A link to your github pages website (e.g., https://deargle.github.i
 Deliverable: Screenshot committing and pushing your changes, demonstrating local git workflow.
 </div>
 
-Warning! Web dev is a sinkhole activity! You can spend _days_ on this, at the
-expense of your other work. Just stick to getting the basics up, then _get out_.
+<div class='alert alert-danger'>
+Warning! Web dev is a sinkhole activity! You can spend <em>days</em> on this, at the
+expense of your other work. Just stick to getting the basics up, then <em>get out</em>.
+</div>
 
 ## Supplemental
+
+Nothing below this point is required. But that doesn't mean it's not good stuff.
 
 ### Using a custom domain for your `<username>.github.io` site
 
@@ -180,24 +184,33 @@ without exception.
 For example, the guide will tell you to install Ruby. Do this from wsl-ubuntu-bash following
 the `apt (Debian or Ubuntu)` instructions on <https://www.ruby-lang.org/en/documentation/installation/>:
 
-    $ sudo apt-get install ruby-full
+~~~bash
+sudo apt-get install ruby-full
+~~~
 
 #### General Instructions
 
 General one-time-only steps:
 
-1. Update your apt list. This is good to run before trying to install _anything_ via apt. It's like a
-   phonebook that tells ubuntu which packages are available, and where to find them.
+1.  Update your apt list. This is good to run before trying to install _anything_ via
+    apt. It's like a
+    phonebook that tells ubuntu which packages are available, and where to find them.
 
-        sudo apt update
+    ~~~bash
+    sudo apt update
+    ~~~
 
-1. Install the Ruby programming language:
+1.  Install the Ruby programming language:
 
-        sudo apt install ruby-full
+    ~~~bash
+    sudo apt install ruby-full
+    ~~~
 
-2. Install Bundler, a ruby package manager:
+2.  Install Bundler, a ruby package manager:
 
-        gem install bundler
+    ~~~bash
+    gem install bundler
+    ~~~
 
 3. Navigate your prompt to your github pages repo directory.
 
@@ -214,9 +227,12 @@ General one-time-only steps:
         gem "github-pages", group: :jekyll_plugins
         EOF
 
-1. Install "build dependencies" -- ubuntu packages that will be necessary to install some of the gems.
+1.  Install "build dependencies" -- ubuntu packages that will be necessary to install
+    some of the gems.
 
-        sudo apt install build-dependencies
+    ~~~bash
+    sudo apt install build-dependencies
+    ~~~
 
 5. Then, run `bundle install` (_without_ `sudo`!). This will generate a new file called `Gemfile.lock`.
 
@@ -237,7 +253,232 @@ General one-time-only steps:
 Now, you can launch a jekyll server which will serve your github pages site
 and dynamically rebuild it if any file changes are detected.
 
-      bundle exec jekyll serve
+~~~bash
+bundle exec jekyll serve
+~~~
 
 Except, if you change your `_config.yml`, you will need to kill your jekyll server and
 restart it.
+
+### I want a blog!
+
+You're in luck! GitHub Pages are built using the Jekyll static site generator, which
+supports blogging as its core feature. It's not hard to tack blogging onto your
+`quick-portfolio` theme. Follow the steps below:
+
+1.  Create a new file in the root of your repository to serve as an index to your
+    blog posts. Let's call it `blog.md`. You might make it look like this:
+
+    {% raw %}
+    ~~~html
+    ---
+    ---
+
+    <h1>Blog</h1>
+
+    <ul>
+      {% for post in site.posts %}
+      <li>
+        <a href='{{ post.url | relative_url }}'>{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+    ~~~
+    {% endraw %}
+
+    The two sets of three hyphens at the top are called Front Matter, and
+    they're important. Read a jekyll quickstart to understand why.
+
+    This will loop through your site's collection of blog posts, and render a link
+    to each one. The page will be available at something like <http://localhost:4000/blog>. Go ahead and visit it.
+
+    Except for the nav bar on the left, it's empty! Oh wait, you don't _have_ any blog posts! No matter!
+
+2. Write a blog post.
+
+   Create a new folder in your repository exactly called `_posts`. Folders in the
+   root of your directory contain what
+   Jekyll calls a "collection." By default, Jekyll has special rules for handling
+   a collection called "posts".
+
+   Blog posts go in the "posts" collection -- one file per blog post. Create a new
+   file in this folder with a name using the following format:
+
+   ~~~
+   MMMM-YY-DD-title-of-the-blog-post.md
+   ~~~
+
+   Where the `.md` extension stands for "markdown." Its content also must start with two sets of three hyphens. After those hyphens,
+   write the blog post content, using markdown (or html). For example:
+
+   {% raw %}
+   ```markdown
+   ---
+   ---
+
+   This is a blog post called `2020-01-25-My-dog-ate-my-homework.md`.
+   It is a true story about how my dog at my _homework_, **again!**.
+
+   And here is a second paragraph going on about my doggo woes.
+   ```
+   {% endraw %}
+
+   Save the file. Then, navigate again to your blog index, maybe running <http://localhost:4000/blog>.
+
+   You should see your new blog post listed there! Our blog index read the title,
+   which it extrapolated from the filename.
+
+   Click the blog post to view it. It looks kind-of okay! But there's a phantom "By" line, and an
+   empty "tags" list. Let's fix both of those.
+
+   Jekyll uses "layouts" to determine common styling for multiple pages, so that
+   you don't have to repeat yourself across files. It makes updating styles easier.
+   The style for your theme's posts is found in the jekyll _theme_ that `quick-portfolio`
+   uses. (While the quick-portfolio theme overrode the "_layouts/default.html"
+   theme, it did _not_ override the theme used for posts. So we must look to the default.)
+
+   By examining `_config.yml`, we see that the theme being used is [jekyll-minimal-theme](https://github.com/pages-themes/minimal/), and [its layout for posts is found here](https://github.com/pages-themes/minimal/blob/master/_layouts/post.html). Follow the link to the posts layout.
+
+
+   #### Fixing the By-line
+
+   Examine the layout. Notice the sets of double curly braces. These are Jekyll
+   (Liquid) templating
+   placeholders. For the "By" line, we see that the theme is referencing the
+   `page.author` and `site.author` variables:
+
+   {% raw %}
+   ```yaml
+   {{ page.author | default: site.author }}
+   ```
+   {% endraw %}
+
+   If our blog post had an author set, it would have been set in the Front Matter,
+   between the sets of hyphens. Something like this:
+
+   ```yaml
+   ---
+   author: John Doe
+   ---
+   ```
+
+   Front Matter is written in a config language called YAML.
+
+   But it would be lame to have to repeat that for each blog post. We look back
+   to the theme and notice that it references `default: site.author`. In jekyll, `site.` variables are read
+   from `_config.yml`. So, add a key-value entry in your `_config.yml` file for
+   `author`:
+
+   ~~~yaml
+   `author: put your name here`
+   ~~~
+
+   Shut down (ctrl+c) and restart your local jekyll
+   server (you have to do that for the server to read updates to its config file).
+   Reload the blog post. Your name should be there!
+
+   #### Fixing Post Tags
+
+   Examine the default posts layout again. It includes the following snippet:
+
+   {% raw %}
+   ```html
+   {% if page.tags %}
+   <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
+   {% endif %}
+   ```
+   {% endraw %}
+
+   We see that it's looking for `page.tags`. [Read the jekyll docs on specifying tags](https://jekyllrb.com/docs/posts/#tags-and-categories). We see that,
+   in our posts' front matter, we can
+   specify either a `tags` key or a `tag` key. For this example, let's set the
+   latter, leading to a blog post that looks like this:
+
+   {% raw %}
+   ```markdown
+   ---
+   tag: lies
+   ---
+
+   This is a blog post called `2020-01-25-My-dog-ate-my-homework.md`.
+   It is a true story about how my dog at my _homework_, **again!**.
+
+   And here is a second paragraph going on about my doggo woes.
+   ```
+   {% endraw %}
+
+   Refresh your blog post webpage (you don't have to restart your server for front-matter changes). You should see that it lists its tag now!
+
+   Multiple tags are left as an exercise to the reader.
+
+
+   #### Adding blog post dates to the blog index
+
+   Spicing up our blog index a little bit, let's list the blog date in the url.
+
+   A post has its date available as a variable, acessible via `.date`. And, the
+   templating language for Jekyll is a fork of the language called Liquid.
+   Liquid includes [_filters_](https://jekyllrb.com/docs/liquid/filters/), including
+   `date_to_string`. We can use it by piping in `post.date` and setting some
+   arguments, like this:
+
+   {% raw %}
+   ```liquid
+   {{ post.title }} | {{ post.date | date_to_string: "ordinal", "US" }}
+   ```
+   {% endraw %}
+
+   Making our blog index look like this:
+
+   {% raw %}
+   ```html
+   ---
+   ---
+
+   <h1>Blog</h1>
+
+   <ul>
+     {% for post in site.posts %}
+     <li>
+       <a href='{{ post.url | relative_url }}'>{{ post.title }}</a>
+     </li>
+     {% endfor %}
+   </ul>
+   ```
+   {% endraw %}
+
+   Not bad!
+
+   #### Add a link to the blog index
+
+   But how will anyone find our blog index? Let's modify `_layouts/default.html`
+   to include a link.
+
+   I added this line at about line 33, after the closing `endif` to the check
+   for whether the site is a github user page, like this:
+
+   {% raw %}
+   ```html
+   ... snipped ...
+
+   {% if site.github.is_user_page %}
+   <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
+   {% endif %}
+
+   <p class='view'><a href="{{ '/blog' | relative_url }}">View my Blog</a></p>
+
+   ... snipped ...
+   ```
+   {% endraw %}
+
+   Refresh your homepage, and you should see a link to your blog post.
+
+   #### Live example
+
+   I forked the `quick-porfolio` theme and made the above changes to it to enable
+   blogging. [View the fork here](https://github.com/deargle/quick-portfolio),
+   and [examine the blog-setting-up commit here]()
+
+   #### Conclusion
+
+   The above is an insultingly shallow overview of blogging with jekyll. But it should show you how you can make some small tweaks to your layout to quickly set up with blogging. Hopefully it inspired you! Ask me for clarification and I'll come back and update this doc. Glhf!
