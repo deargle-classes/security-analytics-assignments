@@ -40,6 +40,7 @@ collections:
         output: true
     questions_and_answers:
     datasets:
+    exam_images:
 
 
 defaults:

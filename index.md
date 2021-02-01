@@ -14,6 +14,7 @@
 * [Datasets]({{ '/datasets' | relative_url }})
 * [Random]({{ '/random-wisdom' | relative_url }})
 * [CRISP-DM report writing]({{ '/crisp-dm-report-format' | relative_url }})
+* [Exam Images]({{ '/exam-images' | relative_url }})
 
 ### Times I've taught this course
 
