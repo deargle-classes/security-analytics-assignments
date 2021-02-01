@@ -10,4 +10,4 @@ Fitting Graph
 
 Learning curve
 
-![learning curve]({{'exam_images/learning_curve.png' | relative_url }})
+![learning curve]({{'exam-images/learning_curve.png' | relative_url }})
