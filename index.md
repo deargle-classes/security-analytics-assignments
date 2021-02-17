@@ -18,5 +18,5 @@
 
 ### Times I've taught this course
 
-- [MSBX5500 Spring 2021 class Github repo](https://github.com/deargle-classes/msbx5500-spring-2021)
+- [MSBX5500 Spring 2021 class website](https://classes.daveeargle.com/msbx5500-spring-2021/)
 - [MSBX5500 Spring 2020 class Github repo](https://github.com/deargle-classes/msbx5500-spring-2020)
