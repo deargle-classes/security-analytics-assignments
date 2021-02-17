@@ -193,6 +193,8 @@ Next:
 
 ## Deliverable
 
+[Use this jupyter notebook template](https://colab.research.google.com/drive/1O-C9cPIDTqSXO62qkcEdKUQxCLAsbSv5?usp=sharing)
+
 Share a jupyter notebook in which you demonstrate loading the [OpenML phish_url dataset](https://www.openml.org/d/42641), (~5MB) into a pandas dataframe in **each** of the following ways:
 
 * OpenML link
@@ -200,5 +202,6 @@ Share a jupyter notebook in which you demonstrate loading the [OpenML phish_url 
 * Google Drive or Dropbox or another personal cloud storage method
 * AWS S3 or Google Cloud or another cloud computing storage service
 
-Each method should be in its own cell. The output of each cell should be the dataset. I'll share an example colab
-deliverable here in a minute, :todo:.
+Each method should be in its own cell. The output of each cell should be the dataset.
+
+Use the template deliverable -- make a copy of it and fill it in.
