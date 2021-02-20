@@ -192,6 +192,7 @@ Next:
 Similar to AWS S3, Google Cloud also uses 'buckets' from which you can host public datasets. The process to create a bucket in GCP is extremely simple.
 
 * Create a GCP account if you don't have one already
+* Open your GCP console
 * Proceed to Storage -> Browser in the navigation pane and create a bucket using the option list
 * Upload your files to your new bucket
 * When the upload is complete, click on the file to view object details. Then open the permissions for it found along the top.
