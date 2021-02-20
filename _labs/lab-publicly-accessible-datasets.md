@@ -189,7 +189,14 @@ Next:
 
 ## Google Cloud
 
-:todo:
+Similar to AWS S3, Google Cloud also uses 'buckets' from which you can host public datasets. The process to create a bucket in GCP is extremely simple.
+
+* Create a GCP account if you don't have one already
+* Proceed to Storage -> Browser in the navigation pane and create a bucket using the option list
+* Upload your files to your new bucket
+* When the upload is complete, click on the file to view object details. Then open the permissions for it found along the top.
+* In the top position, change 'entity' to public and 'name' to allUsers then save.
+* GCP will automatically provide you a public URL now in the Object details. Simply copy-paste this into your pd.read and you're good to go.
 
 ## Deliverable
 
