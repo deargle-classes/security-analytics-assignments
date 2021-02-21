@@ -129,7 +129,7 @@ https://docs.google.com/uc?export=download&id=YourIndividualID
 
 If you get a public "sharing link" for a file in dropbox and examine the URL, you'll notice that it looks like this:
 
-```https://www.dropbox.com/s/611argvbp5dyebw/HealthInfoBreaches.csv?dl=0```
+`https://www.dropbox.com/s/611argvbp5dyebw/HealthInfoBreaches.csv?dl=0`
 
 I took a guess and changed the `dl=0` at the end to `dl=1`, and tada it direct-downloaded! Like this:
 
@@ -189,7 +189,26 @@ Next:
 
 ## Google Cloud
 
-:todo:
+Similar to AWS S3, Google Cloud also uses 'buckets' from which you can host public datasets. Relative to AWS, the process to share files from a GCP bucket is extremely simple.
+
+* Create a GCP account if you don't have one already
+* Open your GCP web console (<https://console.cloud.google.com/>), and select a project.
+    - Unlike AWS where s3 buckets are specific to accounts, buckets in GCP are specific to _projects_
+* Proceed to Storage -> Browser in the navigation pane and create a new bucket.
+    - I created one called `deargle-public-datasets`
+    - For "Choose where to store your data," I left the default
+    - For "Choose a default storage class for your data," I left the default
+    - For "Choose how to control access to objects," I chose _Uniform_
+* Read and follow the GCP documentation for [Making all objects in the bucket publicly readable](https://cloud.google.com/storage/docs/access-control/making-data-public#buckets). As of 2/20/2021,
+  those instructions are the following:
+
+  ![gcp-make-all-objects-in-bucket-publicly-accessible]({{ '/assets/images/gcp-make-all-objects-in-bucket-publicly-accessible.png' | relative_url }})
+* Ignore all scary warnings about this bucket's public-ness, past present and future
+* Click back to the "Objects" tab and upload your files to your new bucket
+* When the upload is complete, click on the file to view object details. You should see a "Public URL"
+  for your dataset. Navigate to this url using a private-browsing window to ensure that
+  your dataset is publicly-available.
+* Use this url with `pd.read_csv`.
 
 ## Deliverable
 
