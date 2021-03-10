@@ -16,6 +16,11 @@
 * [CRISP-DM report writing]({{ '/crisp-dm-report-format' | relative_url }})
 * [Exam Images]({{ '/exam-images' | relative_url }})
 
+# Mini Lessons
+
+* [Dealing with Unbalanced Datasets](https://colab.research.google.com/drive/1kUWUFGhZVpoPS7nVVJowl0md49wKP48i?usp=sharing)
+* [Standardizing and Normalizing](https://colab.research.google.com/drive/1Km5p17IZ_aCOCMe4WqQTKcdvMwrvfLEi?usp=sharing)
+
 ### Times I've taught this course
 
 - [MSBX5500 Spring 2021 class website](https://classes.daveeargle.com/msbx5500-spring-2021/)
