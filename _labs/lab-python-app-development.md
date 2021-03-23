@@ -14,18 +14,53 @@ is hard, since we all have different computer setups. Once this all is done thou
 we should have more-or-less kind-of-identical or identical-enough python development
 environments.
 
-In this lab:
+You've used `docker` before -- `docker` gives you isolated, reproducible
+entire operating system environments so that apps can run precisely replicably
+without worrying about interactions with any other apps running on a system.
+virtual environments are like docker, except not. They're ways to isolate
+_python apps_ from one another -- ways to bundle python installed packages.
+virtual environments give you the ability to bundle a `requirements.txt` file
+with your python app that says exactly which python packages -- and package-versions --
+need to be installed in order for the app to work. You ship the requirements file
+with your app, not the actual packages.
 
-1. Get python
-2. Get pip
-3. Get virtualenv
-4. Get virtualenvwrapper
+In this lab, you'll get a way to use `python` and `pip` within a virtual environment.
 
-## 1. Get Python and Pip -- for Windows users
+* If you're using Anaconda python, you'll install `pip` from the anaconda repository into a `conda env`, and then you'll use
+`pip` from then on out.
+* If you're not using Anaconda python, you'll use
+`virtualenv` (via `virtualenvwrapper`). **Virtualenvwrapper does not work in anaconda python**.
 
-Yes it's possible to install python on Windows, but you should learn how to use
-Windows' new WSL to install a linux distro. It will make some development things
-easier. I don't have proof, just feelings.
+The deliverable is to create a mostly-empty github repository that we'll use
+for future labs.
+
+<div class='alert alert-danger'><strong>Heads up!</strong> If you're using <strong>Anaconda python</strong> on either Windows or Mac, then you must use anaconda's
+built-in <code>conda env</code> as your virtual environment manager. You <em>cannot</em> use
+<code>virtualenv</code>.</div>
+
+
+## If you're using Windows, get a Linux environment
+
+* **If you're using Windows**, you should learn how to use
+  Windows Subsystem for Linux (WSL) to install a linux distro, and you should
+  learn how to do python development within that distro. It will make some development things
+  easier. I don't have proof, just feelings. Do this even if you already have
+  python installed within Windows-proper.
+
+  Once you have your WSL Ubuntu set up, I recommend figuring this out _without_
+  using Anaconda python.
+
+* **If you're using Mac**, you already have a Linux-y-enough environment.
+
+## If you're using Anaconda, skip down to...
+
+If you're using Anaconda, then skip all the way down to [this section](#making-a-virtual-environment-using-conda-env--for-anaconda-users).
+
+## Windows Users -- Get Python and Pip within WSL Ubuntu
+
+The following describes getting python and pip working within WSL Ubuntu. You
+must set this up regardless of whether you have installed python within your
+Windows base install.
 
 ### Get WSL
 
@@ -35,7 +70,7 @@ Check whether you already have it:
 
 If you don't already have it, [get WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10),
 
-### install the Ubuntu distribution
+### Install the Ubuntu distribution
 
 Check whether you already have it:
 
@@ -117,7 +152,7 @@ If you do, **skip the rest of this section.**
 
 #### I don't have pip
 
-If you don't have it, see if you have pip3:
+If you don't have it, see if you have `pip3`:
 
     which pip3
 
@@ -138,28 +173,23 @@ Then, install pip3:
 This will give you the `pip3` command. Then, symlink `/usr/bin/pip` to `/usr/bin/pip3`
 for great justice.
 
-## Get `python` and `pip` -- for Mac users
+## Mac users -- Get `python` and `pip`
 
-I'm sorry but I don't know. But [follow this guide, it looks easy enough](https://docs.python-guide.org/starting/install3/osx/).
-Report back?
+Mac users: **Assuming you're not using anaconda python**: [follow this guide to get python and pip, it looks easy enough](https://docs.python-guide.org/starting/install3/osx/).
+Report back? Sorry, I'm not a Mac user.
 
-## Okay now I have `python` and `pip` commands available, but I'm tired.
+If you're using Anaconda, you already have access to `python` and `pip`.
 
-Keep going. Now you need virtual environment to make your soon-to-be-dozens
+## Creating a virtual environment
+
+Now you need virtual environment to make your soon-to-be-dozens
 of python apps in. Dozens because you'll get so in to this that you won't be
-able to stop.
+able to stop. If you're not using anaconda, follow the section below for "virtualenvwrapper."
+If you're using Anaconda, skip below to the section "Using conda env for Anaconda users."
 
-You've used `docker` before -- `docker` gives you isolated, reproducible
-entire operating system environments so that apps can run precisely replicably
-without worrying about interactions with any other apps running on a system.
-virtual environments are like docker, except not. They're ways to isolate
-_python apps_ from one another -- ways to bundle python installed packages.
-virtual environments give you the ability to bundle a `requirements.txt` file
-with your python app that says exactly which python packages -- and package-versions --
-need to be installed in order for the app to work. You ship the requirements file
-with your app, not the actual packages.
+### Non-Anaconda users -- Using Virtualenvwrapper
 
-Okay let's get to it. I use a python package called [`virtualenvwrapper`](https://virtualenvwrapper.readthedocs.io/en/latest/)
+I use a python package called [`virtualenvwrapper`](https://virtualenvwrapper.readthedocs.io/en/latest/)
 which ... wraps... `virtualenv`. I recommend you use it too. Install it, using `pip`,
 like this:
 
@@ -189,7 +219,7 @@ line to the bottom of your `~/.bashrc`:
 
 The `source` command runs the file.
 
-### Make a virtualenv
+#### Make a virtual environment using virtualenvwrapper
 
 Now, moment of truth -- try making a virtualenv! Adapting from the project's
 [quickstart](https://virtualenvwrapper.readthedocs.io/en/latest/install.html#quick-start),
@@ -205,6 +235,8 @@ created virtual environment CPython2.7.17.final.0-64 in 8271ms
 This creates and _activates_ a virtual environment called 'yay-virtual'. To the left
 of your shell prompt, you should see `(yay-virtual)` -- this tells you which environment
 you have active.
+
+#### Using your virtualenv virtual environment
 
 This environment contains its own `python` and `pip` executable copies. Any
 package you install using `pip` while in this environment will go into a environment-specific
@@ -252,7 +284,7 @@ Run the command with the name of an environment to activate that environment:
 
 And you're back in!
 
-### Bonus -- associate a directory with that environment
+#### Optional -- associate a directory with that environment
 
 As your number of python projects grows exponentially, so will your number of
 environments. It's good to have one environment per project. It's also good to have
@@ -266,9 +298,44 @@ by running `cdproject`. Also, whenever you activate that project in the future,
 your terminal should automatically change directory to the project's directory.
 It's cool!
 
-### Using pip to install everything in a file
+#### Deleting unwanted virtual environments
 
-As mentioned earlier, you can use pip to install all packages listed in a file by running
+_virtualenvwrapper_ provides a `rmvirtualenv` command which will take care of
+virtualenv cleanup for you. If you decide you're done forever with 'yay-virtual',
+you could run the following:
+
+    rmvirtualenv yay-virtual
+
+Following this, running `workon` should no longer show 'yay-virtual' as an option.
+
+### Anaconda Users -- Make a virtual environment using `conda env`
+
+The process is considerably simpler because anaconda comes with `conda env` ready to go.
+The steps below are from [the official anaconda docs for managing environments](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html). I'm assuming that you're using conda >= v4.6.
+
+**Pay attention to this:** conda has its own [package repository](https://anaconda.org/anaconda/repo)
+that is entirely separate from [pypi](https://pypi.org/). I don't use conda packages -- I use pip packages.
+Pip packages work in both python and anaconda, but surprise, conda packages only work in conda.
+That's why I think you should develop with pip packages only.
+
+So! The instructions below show you how to create a conda environment with the `pip` _conda_ package installed.
+This is correct -- install pip into your conda environment using the conda package manager. But after that,
+_stop using the `conda install` within your environment_. Instead, use `pip install` etc. As soon as you use
+`pip` within a conda environment, conda no longer "knows" about the state of the environment.
+
+Do the following three things:
+
+* [Create an environment with pip](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#using-pip-in-an-environment)
+
+* [Activating an environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#activating-an-environment)
+
+* [Deactivating an environment](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#deactivating-an-environment)
+
+## Using pip to install everything in a file
+
+This section works for both `virtualenv` and `conda env`.
+
+You can use pip to install all packages listed in a file by running
 `pip -r <filename>`. This is used often when you deploy your project to other environments
 -- say, to cloud-hosted Heroku. Heroku will recognize that your app is a python app,
 and then look for a file called _requirements.txt_, and if found, automatically install
@@ -281,23 +348,13 @@ Side note, if you are making an installable python package, then your install in
 listed in there. This is common.
 
 This all assumes, of course, that you keep your requirements.txt up to date with all of the packages
-that are actually needed, along with their precise versions!
-
-### Deleting unwanted virtual environments
-
-_virtualenvwrapper_ provides a `rmvirtualenv` command which will take care of
-virtualenv cleanup for you. If you decide you're done forever with 'yay-virtual',
-you could run the following:
-
-    rmvirtualenv yay-virtual
-
-Following this, running `workon` should no longer show 'yay-virtual' as an option.
+that are actually needed, along with their precise versions! Fight dependency hell!
 
 ## Deliverable
 
 This whole lab is preparation for future labs. So, do the following:
 
-* Use virtualenvwrapper to create a virtual environment called 'deploy-ml'
+* Use your virtual environment manager -- whether `virtualenv` or `conda env` -- to create a virtual environment called 'deploy-ml'
 * Create a project directory somewhere called 'deploy-ml'
 * Initialize your new 'deploy-ml' directory as a git repository (`git init`)
 * add a README.md to your directory/project with whatever content,
