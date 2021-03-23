@@ -350,6 +350,20 @@ listed in there. This is common.
 This all assumes, of course, that you keep your requirements.txt up to date with all of the packages
 that are actually needed, along with their precise versions! Fight dependency hell!
 
+## Flow for actually using virtual environments
+
+* Create one virtual environment for each of your python projects
+* When switching between projects, deactivate/activate the associated project environment.
+* Do _not_ commit environment files to your git repository.
+* Only `pip install` with an environment active.
+* Keep your pip dependencies up-to-date, with version numbers, in a file called
+  `requirements.txt` in the root of your project directory.
+  Commit this file to your git repository.
+* Add a "quickstart" line to your project's README.md for how to get the code (`git clone <repo url>`),
+  how install all dependencies (generic "into a virtual environment, run `pip install -r requirements.txt`"),
+  and how to "use" your project (will vary!).
+* If your environment gets borked, blast it away and make a new one.
+
 ## Deliverable
 
 This whole lab is preparation for future labs. So, do the following:
