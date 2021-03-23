@@ -6,9 +6,11 @@ I'm using this page to archive some of the useful content from our slack workspa
 
 <div>
   <h3 id='index'>Index</h3>
+  <ul>
   {% for entry in site.questions_and_answers %}
-    <a href='#{{ entry.id }}'>{{ entry.title }}</a>
+    <li><a href='#{{ entry.id }}'>{{ entry.title }}</a></li>
   {% endfor %}
+  </ul>
 </div>
 
 <hr/>
