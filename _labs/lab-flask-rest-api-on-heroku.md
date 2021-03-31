@@ -62,7 +62,7 @@ I got here by internet-searching "python pickle", first hit: <https://docs.pytho
 an "Examples" section, which takes me [here](https://docs.python.org/3/library/pickle.html#examples).
 
 Pickle your fitted pipeline to a file. Save the file in the root of your project
-directory. For my grading purposes and no other, give your pickled model the name
+directory. For my review purposes and no other, give your pickled model the name
 `model.pkl`.
 
 
@@ -74,21 +74,55 @@ prediction functions expect a list of lists (2 dimensions), and they return a 2-
 Save at least two rows from your data to a file. I like saving my data as plain
 lists. If you're starting from pandas data, you can select two rows of your choosing
 using something like `iloc`, and get their underlying numpy arrays by calling `.values`
-on them, and then calling `tolist()` on the return of `.values`. For my grading purposes,
-call your file `newdata.py`. I copy-and-paste the output of these from the jupyter
+on them, and then calling `tolist()` on the return of `.values`. For my review purposes,
+call your file `newdata.py`.
+
+#### Loading approach one: Copy-paste, assign to a variable, import the variable
+
+I copy-and-paste the output of these from the jupyter
 notebook into my new `newdata.py` file, assigning the values to a variable.
 Assigning to a variable will let me `import` that variable from other files later.
 Something like this:
 
 ```python
 # newdata.py
+# copy-paste a compatible list of values here, and assign it to a variable
 newdata = [ 1, 0, 0, 1, 0, 1 ]
+```
+
+Then, from another file:
+```python
+# anotherfile.py
+from newdata import newdata
+# `newdata` will be the list from `newdata.py`
+```
+
+#### Loading approach two: `json.dump` and `json.load`
+
+You could also avoid copy-pasting, and instead, use the `json.dump` package to dump
+your newdata to a file, and `json.load` to read it into a different file. Like so:
+
+```python
+# file one:
+import json
+
+# below, `newdata` might be a few records selected from your dataset
+with open('newdata.py', 'w') as f:
+  json.dump(newdata, f)
+```
+
+From another file:
+```python
+import json
+
+with open('newdata.py', 'r') as f:
+  newdata = json.load(f)
 ```
 
 ### Test that you can load and use the pickled pipeline.
 
 **For no good reason other than that I say so,** create a new python file
-(_not_ a new jupyter notebook!) in the root of your repository. For my grading purposes
+(_not_ a new jupyter notebook!) in the root of your repository. For my review purposes
 and no other, call your new file `test_pickled_model.py`.
 
 In this file, unpickle your `model.pkl`, and run `predict_proba` against it using
@@ -96,11 +130,22 @@ your newdata. You can import your `newdata` variable from `newdata.py` using an 
 
 ```python
 # test_pickled_model.py
-from newdata import newdata
 
-# model = unpickle the model...
+newdata = ____ # load your newdata, see sections above...
 
-predictions = model.predict_proba(newdata)
+pipe = ____ # unpickle the pipe...
+
+# `model.predict` and friends expect a 2-d array of data. If your newdata is
+# one-dimensional, make it two-dimensional by wrapping it in a list.
+# numpy can be used to check the number of dimensions of a list.
+#    
+#    import numpy as np
+#    newdata = np.array(newdata)
+#    if newdata.ndim == 1:
+#        newdata = [newdata]
+
+predictions = pipe.predict_proba(newdata)
+print(predictions)
 ```
 
 Run your test python file by invoking it from a shell that has your environment
@@ -108,6 +153,31 @@ active. For instance, if my environment were called `pickled-piper`, me runnning
 the file might look like this:
 
     (deploy-ml) /projects/deploy-ml $ python test_pickled_model.py
+
+## Deliverable
+
+Using your dataset, create a github repository with the following files:
+- `README.md`
+
+  This file should:
+  * describe your repository
+  * tell users how to install all requirements using pip
+  * tell users how to fit a model
+  * tell users how to use the test file
+- `.gitignore`
+- `requirements.txt`
+
+  Should include each package necessary to run your notebook and test file
+- `fit-model.ipynb`
+  - Should be able to load your dataset if run by an anonymous user
+  - should fit a pipeline / model using your data, using any classifier you choose
+  - should pickle the model
+- `newdata.py` or `newdata.json` depending on your chosen approach
+
+  Should contain data that is compatible with your pickled model (should be able to be fed to `predict`)
+- `test_pickled_model.py`
+  Should load your test data and feed it to your unpickled model to get a prediction.
+  Should print the prediction.
 
 ### Future lab
 
