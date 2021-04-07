@@ -1,5 +1,5 @@
 ---
-title: Lab -- Flask ML API on Heroku
+title: Lab -- Pickling ML Models
 order: 7
 ---
 
