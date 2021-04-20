@@ -2,7 +2,7 @@
 title: Lab -- Publicly Accessible Datasets
 learning_objectives:
   - Demonstrate sharing datasets in publicly available ways
-order: 4
+order: 5
 ---
 
 Open data science means that others should be able to rereun your code and replicate your results.
