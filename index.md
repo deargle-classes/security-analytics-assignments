@@ -21,6 +21,15 @@
 * [Dealing with Unbalanced Datasets](https://colab.research.google.com/drive/1kUWUFGhZVpoPS7nVVJowl0md49wKP48i?usp=sharing)
 * [Scaling and Standardizing](https://colab.research.google.com/drive/1Km5p17IZ_aCOCMe4WqQTKcdvMwrvfLEi?usp=sharing)
 
+# Jupyter Notebooks
+* [scikit-learn pipeline model evaluation plots (ROC and PR-curve)](https://github.com/deargle/deargle.github.io/blob/master/notebooks/ml_model_evaluation.ipynb)
+* [Fetching infosec-related machine learning datasets with scikit-learn](https://github.com/deargle/deargle.github.io/blob/master/notebooks/ml_datasets_examples.ipynb)
+
+# Other
+* [My analytics-related blog posts](https://daveeargle.com/tags#analytics)
+
+
+
 ### Times I've taught this course
 
 - [MSBX5500 Spring 2021 class website](https://classes.daveeargle.com/msbx5500-spring-2021/)
