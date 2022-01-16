@@ -28,7 +28,8 @@ twitter_username:
 github_username:
 
 # Build settings
-theme: jekyll-theme-slate
+remote_theme: deargle/security-assignments-theme
+
 plugins:
   - jekyll-feed
   - jekyll-github-metadata
@@ -52,15 +53,11 @@ defaults:
     -
         scope:
             path: ""
-            type: "topics"
-        values:
-            layout: "topic"
-    -
-        scope:
-            path: ""
             type: "labs"
         values:
-            layout: "lab"
+            layout: "assignment"
+            include_toc: true
+
 
 
 
