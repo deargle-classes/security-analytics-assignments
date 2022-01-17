@@ -33,6 +33,7 @@ remote_theme: deargle/security-assignments-theme
 plugins:
   - jekyll-feed
   - jekyll-github-metadata
+  - jemoji
 
 collections:
     labs:
@@ -83,3 +84,6 @@ defaults:
 
 exclude:
   - docker-compose.yml
+  - seed
+  - requirements.txt
+  - venv
