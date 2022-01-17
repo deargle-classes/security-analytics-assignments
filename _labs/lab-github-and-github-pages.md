@@ -1,151 +1,414 @@
 ---
 title: Lab -- Github, Markdown, and You
 learning_objectives:
+
   - Create a simple resume using GitHub Pages
   - Write documents using Markdown
   - Demonstrate introductory mastery Git, Github, and Github Pages workflow
     using GitHub Desktop and Atom
+  - Use Docker and docker-compose to run jekyll locally; show general ability to
+    do containerized app development
+
 order: 2
+description: >
+
+  Old people say "if you want a job, you must make a good LinkedIn profile." I
+  say pfft. Make a good github (or other hosted code repo) profile instead. DIY ftw.
 ---
+
+
+# Part 1: Introduction to Github and Markdown
 
 ## Create a nice github account
 
-Create an account. Old people say "if you want a job, you must make a good
-LinkedIn profile." I say pfft. Make a good github
-(or other hosted code repo) profile instead and sk8 or die.
+Create a github account, and make it presentable.
 
-* Choose your username being mindful that it'll be going on resumes, lol
-* Set a nice profile picture for yourself.
-* Set your name and organizational affiliation
+Do the following:
+1.  Choose a username that you won't mind appearing on a resume.
+    * If you want to, you can change your github handle.
+1.  Set a nice profile picture for yourself, and set your name and
+    organizational affiliation.
+    * This helps others know they've found the right account, if they're
+      searching for you.
 
-<div class='alert alert-deliverable'>
-Deliverable: submit a link to your github profile: e.g., https://github.com/deargle
+
+## Do a "Hello World" github project
+
+Now, complete the [GitHub "Hello World" project](https://guides.github.com/activities/hello-world/).
+This will teach you how to use Github.
+
+
+## Learn about writing in Markdown
+
+[Plain text wherever possible](http://www.linfo.org/plain_text.html) is an
+important part of the Unix Philosophy. [Markdown](https://daringfireball.net/projects/markdown/) follows that Philosophy. It is an "easy-to-read, easy-to-write plain text format" that can be converted into HTML.
+
+Skim [both of these
+guides](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github)
+for an introduction to writing in Markdown on GitHub.
+
+
+## Sign the class website
+
+Once you have completed the "Hello World" project, submit a pull request to edit the
+class repository.
+
+Specifically, sign the class repo `index.md` page (find the site URL on canvas).
+Follow the example already there for "Dave Eargle" -- include a link to your
+github profile, and to your built website (e.g., your
+<em>username.github.io</em>). Once you have opened the pull request, submit a link to your pull requests.
+
+{% include lab_question.html question='Submit a link to your pull requests that edits the class repo.' %}
+
+
+
+# Part 2: Create a portfolio website
+
+Github has a service called [Github Pages](https://pages.github.com/) for
+creating websites. Skim that page.  They try to make the service easy-cheese to
+use.
+
+The default Github Pages "themes" are tailed for either blogs or projects. But
+you want a portfolio!
+
+For your portfolio website, I recommend that you use [@evanca's
+'quick-portfolio' theme](https://github.com/evanca/quick-portfolio). To do so,
+follow [@evanca's instructions on
+Medium][medium-post].
+
+[medium-post]: https://blog.usejournal.com/set-up-your-portfolio-website-in-less-than-10-minutes-with-github-pages-d0efa8ff56fd
+
+<div class='alert alert-info'>
+<p>
+<strong>Side note:</strong> Evanca's theme is a customization of the <a href='https://github.com/pages-themes/minimal'>jekyll-theme-minimal</a> theme.</p>
+
+<p class='mb-0'>Visit that link and skim the README for customization info. @evanca's theme
+follows these instructions and makes a few small tweaks to make the site more
+portfolio-related. If you wanted to
+customize @evanca's theme further, you could follow the same instructions.</p>
 </div>
 
-Now, complete the [GitHub Hello World project](https://guides.github.com/activities/hello-world/)
 
-<div class='alert alert-deliverable'>
-Deliverable: submit a link to your github hello-world repository
-</div>
+## How did that work?! I didn't write any html!
 
-## Read about Git and the GitHub flow
+Now that you have some basic github skills, you can create a Github Pages
+website. Time for acronyms!
 
-To prepare you for what you are about to do, read the following two guides from the collection of [GitHub guides](https://guides.github.com/):
+Websites can either be **dynamic**, or **static**.
+* Dynamic websites require a webserver to process requests sent by clients
+  like web browsers. Dynamic sites can interact with a database to load
+  information customized for any given client.
+* Static websites don't require any server-side processing. The same content
+  is sent for each client request.
 
-* [Understanding the GitHub flow](https://guides.github.com/introduction/flow/)
-* [Git Handbook](https://guides.github.com/introduction/git-handbook/)
+Cool vs uncool:
+* It's cool to write **static** blogs.
+* It's cool to have a cool-looking blog.
+* It's _uncool_ to have to cram a bunch of styling information into _each and every static blog page._
+* It's cool to make something else do all the stylization stuff.
 
-## Create a Github Pages resume webpage.
+Static Website Generators exist to do all the cool stuff listed above.
+Under the hood, Github Pages runs a static website generator called
+[Jekyll](https://jekyllrb.com/). Jekyll is therefore, by definition, cool.
 
-~~Using [this guide](https://guides.github.com/features/pages/), make a [GitHub Pages](https://pages.github.com/) site.~~
+When you commit code to a github-pages-enabled repo, github runs jekyll against
+it to generate the _static content_ that gets served when you visit the pages
+url.
 
-Most of the github-provided pre-baked pages themes are tailored to source code. To make a GitHub Pages portfolio website,
-I recommend that you use [@evanca's 'quick-portfolio' theme](https://github.com/evanca/quick-portfolio). To do so,
-follow [@evanca's instructions on Medium.](https://blog.usejournal.com/set-up-your-portfolio-website-in-less-than-10-minutes-with-github-pages-d0efa8ff56fd). Following this guide, you could do everything on the github website, but I want you to also learn
-how you can make changes to files locally, and then push (upload) your changes. So only follow **Steps 1 through 5** for now.
-Later, you will use Atom to complete steps 6 through 9.
 
-**Pay attention:** this theme is a customization of the [jekyll-theme-minimal](https://github.com/pages-themes/minimal) theme.
-Follow the link for the minimal theme and look at the README to see how one might customize the minimal
-theme. @evanca's theme follows these instructions and makes a few small tweaks to make the site more portfolio-related
-as opposed to source code-related. So if you wanted to customize @evanca's theme further, you can follow the instructions
-in the jekyll-theme-minimal README.
 
-### Github Desktop
+# Part 3: Developing Github Pages sites locally
 
-* Install [GitHub Desktop](https://desktop.github.com/)
-* Use GitHub Desktop to clone your github pages repository to your local computer
+It's a pain in the butt to have to wait for github to rebuild your website to
+see change you're trying to develop. And what if it looks bad! Anyone on the
+internet could see it!
 
-### Atom and Markdown
+Cool kids render their websites _locally_ instead, before pushing changes
+_live_. Let's do that, using Docker.
 
-You need a nice text editor. I like [Atom](https://atom.io/). For this
-lab, download, install, and use Atom. After, if you hate it, you can abandon it.
+## Install a nice text editor
 
-* Download and install Atom
-* Use Github Desktop to open your github pages repository in Atom
+You need a nice text editor. I like [Atom](https://atom.io/). For this lab,
+download and install Atom. After, if you hate it, you can abandon it.
 
-  ![github-desktop-open-in-editor]({{ 'assets/images/github-desktop-atom.png' | relative_url }})
+## Clone your repo
 
-  **Background information:** Your clone includes a `.git` folder, in which there is a `.git/config` file, which
-  GitHub Desktop will populate with information about where the clone _came_ from.
-  This makes it possible for git client tools, such as the one bundled with Atom,
-  to know _where_ to sync (push) changes to by default. Find and open this file in
-  a text editor to see for yourself.
+Next, you need a git client, and why not one that is also github-aware.
 
-  But in order for Atom's
-  bundled git client to know about that folder and config file, the clone folder needs to be
-  opened _as a folder_ within Atom, as opposed to you using Atom to open and edit an
-  individual file within the repo, were you to manually navigate to the clone folder
-  with a file explorer and access the files that way. If you use GitHub Desktop
-  to open your clone, this should be automatic.
+1.  Install [GitHub Desktop](https://desktop.github.com/).
+1.  Then, use it to "clone" your github pages repo to your local computer.
 
-  Git repositories typically only contain one `.git` folder, at the root of the
-  repository. IDEs such as Atom therefore look to the root of the currently opened
-  folder for a `.git` folder.
+    For help, read [this guide](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop).
+1.  Then, use Github Desktop to open your repo in Atom. You'll edit it there later.
 
-* Hook Atom up to GitHub ([the package comes bundled with Atom, because All Hail Octocat](https://github.atom.io/)).
 
-  Click on the Github tab towards the bottom-right of your Atom window. Complete its
-  login form.
+## Read about the jekyll/jekyll docker image
 
-  ![atom-github-tab]({{ 'assets/images/atom-github-tab.png' | relative_url }})
+To build your site locally, you need to run [Jekyll](https://jekyllrb.com)
+locally. Jekyll is a [ruby](https://www.ruby-lang.org/en/) app.
 
-Next, customize your `index.md` using the Markdown language, and then push your
-local changes to your github-hosted GitHub Pages repository.
+Skim [the jekyll install docs](https://jekyllrb.com/docs/installation/)
+including the guide for your OS. Read until you realize that it looks painful to
+install jekyll. And that's right, it _is_ painful!
 
-* Learn about Markdown. Specifically, read about [GitHub-flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+This is _exactly_ the kind of pain that Docker exists to fix.
 
-* Using Atom instead of the GitHub website proper, follow the instructions in
-  [@evanca's instructions on Medium.](https://blog.usejournal.com/set-up-your-portfolio-website-in-less-than-10-minutes-with-github-pages-d0efa8ff56fd) **steps 6 through 9**. In these steps, you will do the following:
+We will use the [`jekyll/jekyll`](https://hub.docker.com/r/jekyll/jekyll/)
+docker image. This image already has jekyll installed inside it. We just need to
+make the repo's files available to the running docker container, so that jekyll
+can build the site.
 
-  - upload a profile picture
+Skim the image's
+[README](https://github.com/envygeeks/jekyll-docker/blob/master/README.md), but
+don't do anything yet.
 
-    #### Getting the image file into your repository
+<div class='alert alert-info'><strong>Is this repo defunct?</strong> If you
+browse the repo's "Issues" and "Pull Requests," you would realize that this repo has many unaddressed issues. No matter, it works
+anyhow.</div>
 
-    You need to copy your image file into your repository, using something like file explorer. You can quickly navigate
-    to where your repo is stored on disk by using the "View the files of your repository in \[Explorer\|Finder\]" menu option in
-    GitHub Desktop. Commit the image file to your repository.
 
-    #### Setting the image url
 
-    Also, github has a special url format that will let you fetch a _raw file_ as opposed to a _view of the file wrapped in the GitHub UI_.
-    To get the raw file, append `?raw=true` to the url.
+## Add a `Gemfile` to your project
 
-    See for yourself. Visit the forked repository's
-    logo file _without_ using `?raw=true` here: <https://github.com/evanca/quick-portfolio/blob/master/images/demo.gif>. Note
-    that it is wrapped in the GitHub UI. Then, visit it _with_ `?raw=true`: <https://github.com/evanca/quick-portfolio/blob/master/images/demo.gif?raw=true>. You get the raw image file. This is what you need, so that your logo can be
-    displayed in your website.
+Jekyll is a `ruby` program. `ruby` library packages are called "gems". A project can include a `Gemfile` to specify
+the gems that it needs.
 
-    Note that the forked repository does this:
+Use Atom to add a file called `Gemfile` to the root of your repo with the following contents:
 
-        # in _config.yml
-        logo: "/images/logo.png?raw=true"
+```ruby
+# Gemfile
+source 'https://rubygems.org'
+gem 'github-pages', group: :jekyll_plugins
+```
 
-    Even though the log file stored in their repository's `/images/` folder is named just `logo.png`.
-  - customize your `_config.yml`
-  - customize your `index.md`
+This says that our project needs the "github-pages" gem. That gem in turn
+includes many other gems.
 
-* Using Atom, commit and push your changes. Check that your website has updated! It might take a minute. You should
-  get an email from github if you broke anything with your `_config.yml` edits.
 
-<div class='alert alert-deliverable'>
-Deliverable: A link to your github pages website (e.g., https://deargle.github.io), and also to its backing repository (e.g., https://github.com/deargle/deargle.github.io)
-</div>
+## Run jekyll docker container
 
-<div class='alert alert-deliverable'>
-Deliverable: Screenshot committing and pushing your changes, demonstrating local git workflow.
-</div>
+Install [Docker-Desktop](https://www.docker.com/products/docker-desktop) if you
+don't already have it.
+
+Now, open a terminal in the directory of your cloned repo.
+* You can see where your repo is located on your filesystem by using the "View
+  the files of your repository" button in Github Desktop.
+* You could use the Github Desktop `Repository > Open in Command Prompt/Terminal` menu item:
+
+  {% include lab-image.html image='github-desktop-open-in-command-prompt.png' %}
+
+
+Now, look at the following `docker` command, but don't run it yet.
+
+```bash
+docker run --rm \
+  --volume="${PWD}:/srv/jekyll" \
+  --publish [::1]:4000:4000 \
+  jekyll/jekyll \
+  jekyll serve
+```
+
+Understand it first:
+* The command runs image `jekyll/jekyll`, which by default will use the
+  `:latest` tag. That's fine.
+* It will remove (`--rm`) the container when we stop it.
+* The command mounts the current directory `${PWD}` inside the container. This
+  makes your website files available to the container.
+* The command maps container port `4000` to your computer's port `4000`. This
+  means that you can access `http://localhost:4000` to view whatever is being
+  served on that port within the container.
+* The last line is `jekyll serve`. This is the command that the container will
+  ultimately run. It will launch a webserver that will (1) build the website,
+  (2) serve the built website, and (3) watch for new changes so that it can
+  rebuild. It's slick.
+
+Now, run the earlier `docker` command. <i class="fas fa-rocket"></i>
+
+You notice that the first thing the container does is install a bunch of gems.
+While the iamge _already_ includes a bunch of installed gems, the container
+looks inside our `Gemfile` and sees that it needs to install the `github-pages`
+ones.
+
+Yawn, this takes a while.
+
+But once that's done, you should see a message that your site is being served on
+<http://localhost:4000>. Visit that url. Hopefully it's working! If not,
+:no_entry_sign: stop and panic. Otherwise, continue.
+
+Jekyll is watching for filesystem changes. Use Atom to make a change to a `.md`
+file in your repo. Confirm that log output shows that the change was detected.
+Refresh the browser to confirm that the update has been applied.
+
+<div class='alert alert-waring'><strong>Heads up!</strong> Jekyll will not
+auto-regenerate if you modify <code>_config.yml</code>.  You have to restart jekyll
+to pick up changes to that file.</div>
+
+Close the running container by running `ctrl+c` (I think; or whatever mac equivalent).
+
+Now, run the earlier docker command again (up-arrow to cycle through your shell's history!).
+
+Oh no, it has to install the gems again! Why doesn't it remember? Because we
+removed (`--rm`) the image. It starts fresh each time. That's a _feature_ of Docker.
+But surely we can cache somehow?
+
+## Caching gems using a filesystem mount
+
+The [`jekyll/jekyll`
+docs](https://github.com/envygeeks/jekyll-docker/blob/master/README.md) say that
+a volume can be mounted to the container internal directory `/usr/local/bundle`.
+Gems will be installed to that directory, and the container will look there
+before installing them again. That's what we want!
+
+But there's a gotcha for Windows users. The readme recommends the following flag:
+
+```bash
+--volume="${PWD}/vendor/bundle:/usr/local/bundle"
+```
+
+This would save installed gems to local project directory `vendor/bundle`. This
+would in turn be included in the `${PWD}:/srv/jekyll` volume mount. But there can be a _lot_
+of files in that directory. And on Windows, mounted directories get _really really slow_
+-- like, jumping to a 5-minute-mount-time slow. Not good!
+
+## Caching gems using a docker volume instead
+
+A solution instead is to install the bundled files to a _docker volume_, which
+are _not_ be mounted to the windows filesystem. (They stay within the docker engine.)
+
+[Here's](https://docs.docker.com/storage/volumes/#start-a-container-with-a-volume)
+the docker volume docs. It says that if we specify a volume that doesn't exist
+yet, Docker will create it for us :+1:.
+
+So, do that, naming the volume something like `my-bundle`:
+
+```bash
+docker run --rm \
+  --volume="my-bundle:/usr/local/bundle" \
+  --volume="${PWD}:/srv/jekyll" \
+  --publish [::1]:4000:4000 \
+  jekyll/jekyll \
+  jekyll serve
+```
+
+Run the command and wait for the gems to install (stored in the volume). Then
+kill the container, then run it again. It should skip the gem install step this
+time, and be much faster. Kill it again and run it again, just
+to feel the power. :tada:
+
+**Best practice:** Add your docker command to a `README.md` file in your repo, so
+you can remember it later.
+
+## Use docker-compose instead
+
+But that's a cumbersome command. Let's use
+[`docker-compose`](https://docs.docker.com/compose/) instead of typing that
+monster out. It already comes installed with Docker-Desktop.
+
+Create a YAML file in the root of your repo called `docker-compose.yml` with the following contents:
+
+```yaml
+version: '3'
+
+services:
+  jekyll:
+    image: jekyll/jekyll
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/srv/jekyll
+      - my-bundle:/usr/local/bundle
+    restart: unless-stopped
+    command: jekyll serve
+
+volumes:
+  my-bundle:
+```
+
+Then, from the shell, call `docker-compose up`, and wait a bit. It should work!
+
+Close the running container with `ctrl+c`.
+
+Take a break :tropical_drink:
+
+
+## Create a `.gitignore` file
+
+Running the container creates a few folders and files in your local directory
+that you don't want to commit to your repos, such as the following:
+
+* A folder called `_site` which contains the built website.
+* The `vendor/bundle` directory from earlier, if you ran that command
+* A `Gemfile.lock` file which specifies and pins _all_ installed gems to
+  specific versions
+
+To avoid committing these to your repos, create a file called `.gitignore` with the following contents:
+
+```gitignore
+_site
+vendor/
+Gemfile.lock
+.sass-cache
+.jekyll-cache
+.jekyll-metadata
+```
+
+## Commit changes and push
+
+Once you are satisfied with your website modifications, you need to `commit` them
+to your local repo, and then `push` (sync) those commits to your github copy of your
+repo.
+
+Review [this Github Desktop](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/making-changes-in-a-branch/committing-and-reviewing-changes-to-your-project)
+guide for how to use add, commit, and push changes.
+
+Following that guide, add and commit your modifications.
+* Don't forget to commit your `.gitignore` and `Gemfile` files!
+* Write good commit messages!
+
+Once you've pushed your commits to github, github will (eventually) rebuild your
+site. If it failed to build, you'll get an email with an error message.
+
+{% include lab_question.html question='Submit a screenshot of successfully using Github Desktop to push commits from your local repo to github.' %}
+
 
 <div class='alert alert-danger'>
-Warning! Web dev is a sinkhole activity! You can spend <em>days</em> on this, at the
+<strong>Warning!</strong> Web dev is a sinkhole activity! You can spend <em>days</em> on this, at the
 expense of your other work. Just stick to getting the basics up, then <em>get out</em>.
 </div>
 
-## Supplemental
+# Supplemental
 
 Nothing below this point is required. But that doesn't mean it's not good stuff.
 
-### Using a custom domain for your `<username>.github.io` site
+## Tips for following evanca's Medium post
+
+In Evanca's Medium post, you upload a profile picture.
+
+Setting image urls can be tricky.
+
+Github has a special url format that will let you fetch a _raw file_ as opposed
+to a _view of the file wrapped in the GitHub UI_.  To get the raw file, append
+`?raw=true` to the url.
+
+Try it for yourself using a browser:
+1.  Visit the forked repository's logo file _without_ using
+    `?raw=true` here:
+    <https://github.com/evanca/quick-portfolio/blob/master/images/demo.gif>. Note
+    that it is wrapped in the GitHub UI.
+1.  Then, visit it _with_ `?raw=true` appended:
+    <https://github.com/evanca/quick-portfolio/blob/master/images/demo.gif?raw=true>.
+    You get the raw image file. This is what you need, so that your logo can be
+    displayed in your website.
+
+Note that the forked repository follows the above pattern:
+
+    # in _config.yml
+    logo: "/images/logo.png?raw=true"
+
+Even though the log file stored in their repository's `/images/` folder is named just `logo.png`.
+
+
+## Using a custom domain for your `<username>.github.io` site
 
 My website, <https://daveeargle.com>, actually points to a GitHub Pages site at
 <https://github.com/deargle/deargle.github.io>. If you want a swanky domain name too,
@@ -153,332 +416,260 @@ then you can [follow these instructions](https://docs.github.com/en/github/worki
 
 1. Purchase a domain name from a domain name
    registrar such as [Cloudflare](https://cloudflare.com).
-
 2. Add a CNAME DNS record for your domain, setting your domain name to be a CNAME
    for your github-provided `<username>.github.io` domain.
 
    By default, your domain name registrar will also provide DNS service for you.
-
 3. On the Settings tab for your github repository, add your purchased domain name
    to the "Custom domain" field, and save.
 
    This will add a file called `CNAME` to the root of your repository, with your
    domain name as its contents.
-
-3. ??? Profit.
-
-### How can I test my changes locally without pushing live?
-
-Read [this github guide](https://docs.github.com/en/github/working-with-github-pages/testing-your-github-pages-site-locally-with-jekyll).
-The guide will instruct you to install Ruby and Bundler. If you're on windows, one of the coolest ways to get Ruby is to [install a linux distro such as Ubuntu using Windows Subsystem for Linux (WSL)](https://ubuntu.com/wsl). Read below for some hand-holding tips.
+3. ???
+4. Profit.
 
 
-#### Assuming you're on Windows, do everything from WSL Ubuntu Bash prompt
+## Connect Atom to Github
 
-If you're on Windows, then _do everything from your WSL Ubuntu instance_. Recall
-that to access your instance, open a command prompt and run the command `bash`.
-That done, everything you do from that bash prompt will be done `on Ubuntu`.
-Then, you can follow whatever website instructions for doing something _on Ubuntu_,
-without exception.
+Hook Atom up to GitHub ([the package comes bundled with Atom, because All Hail Octocat](https://github.atom.io/)).
 
-For example, the guide will tell you to install Ruby. Do this from wsl-ubuntu-bash following
-the `apt (Debian or Ubuntu)` instructions on <https://www.ruby-lang.org/en/documentation/installation/>:
+Click on the Github tab towards the bottom-right of your Atom window. Complete its
+login form.
 
-~~~bash
-sudo apt-get install ruby-full
+![atom-github-tab]({{ 'assets/images/atom-github-tab.png' | relative_url }})
+
+Now, you can do the git "add", "commit", and "push" workflow from within Atom,
+without having to use Github Desktop.
+
+
+## Use Jekyll for Blogging
+
+You're in luck! Jekyll's core competency is blogging! It's not hard to tack
+blogging onto your `quick-portfolio` theme. Follow my silly guide below:
+
+### Create a blog index page
+
+Create a new file in the root of your repository to serve as an index to your
+blog posts. Let's call it `blog.md`. You might make it look like this:
+
+{% raw %}
+~~~html
+---
+---
+
+<h1>Blog</h1>
+
+<ul>
+  {% for post in site.posts %}
+  <li>
+    <a href='{{ post.url | relative_url }}'>{{ post.title }}</a>
+  </li>
+  {% endfor %}
+</ul>
+~~~
+{% endraw %}
+
+The two sets of three hyphens at the top are called Front Matter, and they're
+important. Read a [jekyll
+guide](https://jekyllrb.com/docs/step-by-step/01-setup/) to understand why.
+
+This index page will loop through your site's collection of blog posts, and render a link
+to each one. The page will be available at <http://localhost:4000/blog>. Go ahead and visit it.
+
+Except for the nav bar on the left, it's empty! That's because you don't _have_ any blog posts yet!
+
+### Write a blog post.
+
+Create a new folder in your repository exactly called `_posts`. Folders in the
+root of your directory contain what
+Jekyll calls a "collection." By default, Jekyll has special rules for handling
+a collection called "posts".
+
+Blog posts go in the "posts" collection -- one file per blog post. Create a new
+file in this folder with a name using the following format:
+
+~~~
+MMMM-YY-DD-title-of-the-blog-post.md
 ~~~
 
-#### General Instructions
+Where the `.md` extension stands for "markdown." Its content also must start with two sets of three hyphens. After those hyphens,
+write the blog post content, using markdown (or html). For example:
 
-General one-time-only steps:
+{% raw %}
+```markdown
+---
+---
 
-1.  Update your apt list. This is good to run before trying to install _anything_ via
-    apt. It's like a
-    phonebook that tells ubuntu which packages are available, and where to find them.
+This is a blog post called `2020-01-25-My-dog-ate-my-homework.md`.
+It is a true story about how my dog at my _homework_, **again!**.
 
-    ~~~bash
-    sudo apt update
-    ~~~
+And here is a second paragraph going on about my doggo woes.
+```
+{% endraw %}
 
-1.  Install the Ruby programming language:
+Save the file. Then, navigate again to your blog index at <http://localhost:4000/blog>.
 
-    ~~~bash
-    sudo apt install ruby-full
-    ~~~
+You should see your new blog post listed there! Our blog index read the title,
+which it extrapolated from the filename.
 
-2.  Install Bundler, a ruby package manager:
+Click the blog post to view it. It looks kind-of okay! But there's a phantom "By" line, and an
+empty "tags" list. Let's fix both of those.
 
-    ~~~bash
-    gem install bundler
-    ~~~
+Jekyll uses "layouts" to determine common styling for multiple pages, so that
+you don't have to repeat yourself across files. It makes updating styles easier.
+The style for your theme's posts is found in the jekyll _theme_ that `quick-portfolio`
+uses. (While the quick-portfolio theme overrode the "_layouts/default.html"
+theme, it did _not_ override the theme used for posts. So we must look to the default.)
 
-3. Navigate your prompt to your github pages repo directory.
+By examining `_config.yml`, we see that the theme being used is
+[jekyll-minimal-theme](https://github.com/pages-themes/minimal/), and [its
+layout for posts is found
+here](https://github.com/pages-themes/minimal/blob/master/_layouts/post.html).
+Follow the link to see the posts layout.
 
-   On WSL, your windows filesystem is mounted under `/mnt/c`. For example, my project directory
-   is located at `/mnt/c/Users/deargle/projects/`.
 
-4. Bundler expects you to have a file called `Gemfile` in your repository root.
-   And, for a GitHub Pages jekyll site, your Gemfile needs to reference the GitHub
-   [`pages-gem`](https://github.com/github/pages-gem). So, create a Gemfile
-   and set its content:
+### Fixing the By-line
 
-        cat <<EOF > Gemfile
-        source "https://rubygems.org"
-        gem "github-pages", group: :jekyll_plugins
-        EOF
+Examine the posts layout. Notice the sets of double curly braces. These are Jekyll
+(Liquid) templating
+placeholders. For the "By" line, we see that the theme is referencing the
+`page.author` and `site.author` variables:
 
-1.  Install "build dependencies" -- ubuntu packages that will be necessary to install
-    some of the gems.
+{% raw %}
+```yaml
+{{ page.author | default: site.author }}
+```
+{% endraw %}
 
-    ~~~bash
-    sudo apt install build-dependencies
-    ~~~
+`page.author` means that if our blog post had an author set, it would have been
+set in the post Front Matter, between the sets of hyphens. Front Matter is
+written in a config language called YAML. Like this:
 
-5. Then, run `bundle install` (_without_ `sudo`!). This will generate a new file called `Gemfile.lock`.
+```yaml
+---
+author: John Doe
+---
+```
 
-5. You will want to have a file in your repository called `.gitignore` which will prevent
-   you from accidentally committing local-build-related to your github repository.
-   Create a minimal jekyll-themed `.gitignore` file as follows:
+But it would be lame to have to repeat that for each blog post. We look back to
+the theme and notice that it references `default: site.author`. In jekyll,
+`site.` variables are read from `_config.yml`. So, add a key-value entry in your
+`_config.yml` file for `author`:
 
-        cat <<EOF > .gitignore
-        _site
-        .sass-cache
-        .jekyll-cache
-        .jekyll-metadata
-        vendor
-        EOF
-
-6. Add and commit your new `Gemfile`, `Gemfile.lock`, `.gitignore` files to your repository.
-
-Now, you can launch a jekyll server which will serve your github pages site
-and dynamically rebuild it if any file changes are detected.
-
-~~~bash
-bundle exec jekyll serve
+~~~yaml
+author: put your name here
 ~~~
 
-Except, if you change your `_config.yml`, you will need to kill your jekyll server and
-restart it.
+Restart your local jekyll server to read in changes to `_config.yml`. Reload the
+blog post. Your name should be there!
 
-### I want a blog!
+### Fixing Post Tags
 
-You're in luck! GitHub Pages are built using the Jekyll static site generator, which
-supports blogging as its core feature. It's not hard to tack blogging onto your
-`quick-portfolio` theme. Follow the steps below:
+Examine the default posts layout again. It includes the following snippet:
 
-1.  Create a new file in the root of your repository to serve as an index to your
-    blog posts. Let's call it `blog.md`. You might make it look like this:
+{% raw %}
+```html
+{% if page.tags %}
+<small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
+{% endif %}
+```
+{% endraw %}
 
-    {% raw %}
-    ~~~html
-    ---
-    ---
+We see that it's looking for `page.tags`. [Read the jekyll docs on specifying tags](https://jekyllrb.com/docs/posts/#tags-and-categories). We see that
+in our posts' front matter, we can
+specify either a `tags` key or a `tag` key.
 
-    <h1>Blog</h1>
+For this example, let's set the
+latter, leading to a blog post that looks like this:
 
-    <ul>
-      {% for post in site.posts %}
-      <li>
-        <a href='{{ post.url | relative_url }}'>{{ post.title }}</a>
-      </li>
-      {% endfor %}
-    </ul>
-    ~~~
-    {% endraw %}
+{% raw %}
+```markdown
+---
+tag: lies
+---
 
-    The two sets of three hyphens at the top are called Front Matter, and
-    they're important. Read a jekyll quickstart to understand why.
+This is a blog post called `2020-01-25-My-dog-ate-my-homework.md`.
+It is a true story about how my dog at my _homework_, **again!**.
 
-    This will loop through your site's collection of blog posts, and render a link
-    to each one. The page will be available at something like <http://localhost:4000/blog>. Go ahead and visit it.
+And here is a second paragraph going on about my doggo woes.
+```
+{% endraw %}
 
-    Except for the nav bar on the left, it's empty! Oh wait, you don't _have_ any blog posts! No matter!
+Jekyll should have automatically detected your changes and rebuilt your site.
+Refresh your blog post webpage. You should see that it lists its tag now!
 
-2. Write a blog post.
+Multiple tags are left as an exercise to the reader.
 
-   Create a new folder in your repository exactly called `_posts`. Folders in the
-   root of your directory contain what
-   Jekyll calls a "collection." By default, Jekyll has special rules for handling
-   a collection called "posts".
+### Adding blog post dates to the blog index
 
-   Blog posts go in the "posts" collection -- one file per blog post. Create a new
-   file in this folder with a name using the following format:
+Spicing up our blog index a little bit, let's list the blog date in the url.
 
-   ~~~
-   MMMM-YY-DD-title-of-the-blog-post.md
-   ~~~
+A post has its date available as a variable, acessible via `.date`. And, the
+templating language for Jekyll is a fork of the language called Liquid.
+Liquid includes [_filters_](https://jekyllrb.com/docs/liquid/filters/), including
+`date_to_string`. We can use it by piping in `post.date` and setting some
+arguments, like this:
 
-   Where the `.md` extension stands for "markdown." Its content also must start with two sets of three hyphens. After those hyphens,
-   write the blog post content, using markdown (or html). For example:
+{% raw %}
+```liquid
+{{ post.title }} | {{ post.date | date_to_string: "ordinal", "US" }}
+```
+{% endraw %}
 
-   {% raw %}
-   ```markdown
-   ---
-   ---
+Making our blog index look like this:
 
-   This is a blog post called `2020-01-25-My-dog-ate-my-homework.md`.
-   It is a true story about how my dog at my _homework_, **again!**.
+{% raw %}
+```html
+---
+---
 
-   And here is a second paragraph going on about my doggo woes.
-   ```
-   {% endraw %}
+<h1>Blog</h1>
 
-   Save the file. Then, navigate again to your blog index, maybe running <http://localhost:4000/blog>.
+<ul>
+ {% for post in site.posts %}
+ <li>
+   <a href='{{ post.url | relative_url }}'>{{ post.title }}</a>
+ </li>
+ {% endfor %}
+</ul>
+```
+{% endraw %}
 
-   You should see your new blog post listed there! Our blog index read the title,
-   which it extrapolated from the filename.
+Not bad!
 
-   Click the blog post to view it. It looks kind-of okay! But there's a phantom "By" line, and an
-   empty "tags" list. Let's fix both of those.
+### Add a link to the blog index
 
-   Jekyll uses "layouts" to determine common styling for multiple pages, so that
-   you don't have to repeat yourself across files. It makes updating styles easier.
-   The style for your theme's posts is found in the jekyll _theme_ that `quick-portfolio`
-   uses. (While the quick-portfolio theme overrode the "_layouts/default.html"
-   theme, it did _not_ override the theme used for posts. So we must look to the default.)
+But how will anyone find our blog index? Let's modify `_layouts/default.html`
+to include a link.
 
-   By examining `_config.yml`, we see that the theme being used is [jekyll-minimal-theme](https://github.com/pages-themes/minimal/), and [its layout for posts is found here](https://github.com/pages-themes/minimal/blob/master/_layouts/post.html). Follow the link to the posts layout.
+I added this line at about line 33, after the closing `endif` to the check
+for whether the site is a github user page, like this:
 
+{% raw %}
+```html
+... snipped ...
 
-   #### Fixing the By-line
+{% if site.github.is_user_page %}
+<p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
+{% endif %}
 
-   Examine the layout. Notice the sets of double curly braces. These are Jekyll
-   (Liquid) templating
-   placeholders. For the "By" line, we see that the theme is referencing the
-   `page.author` and `site.author` variables:
+<p class='view'><a href="{{ '/blog' | relative_url }}">View my Blog</a></p>
 
-   {% raw %}
-   ```yaml
-   {{ page.author | default: site.author }}
-   ```
-   {% endraw %}
+... snipped ...
+```
+{% endraw %}
 
-   If our blog post had an author set, it would have been set in the Front Matter,
-   between the sets of hyphens. Something like this:
+Refresh your homepage, and you should see a link to your blog post on every page.
 
-   ```yaml
-   ---
-   author: John Doe
-   ---
-   ```
+### Live example
 
-   Front Matter is written in a config language called YAML.
+I forked the `quick-porfolio` theme and made the above changes to it to enable
+blogging. [View the fork here](https://github.com/deargle/quick-portfolio),
+and [examine the blog-setting-up commit here](https://github.com/deargle/quick-portfolio/commit/45542845516a11254ba6df62b86cddad95f7b7af).
 
-   But it would be lame to have to repeat that for each blog post. We look back
-   to the theme and notice that it references `default: site.author`. In jekyll, `site.` variables are read
-   from `_config.yml`. So, add a key-value entry in your `_config.yml` file for
-   `author`:
+### Conclusion
 
-   ~~~yaml
-   author: put your name here
-   ~~~
-
-   Shut down (ctrl+c) and restart your local jekyll
-   server (you have to do that for the server to read updates to its config file).
-   Reload the blog post. Your name should be there!
-
-   #### Fixing Post Tags
-
-   Examine the default posts layout again. It includes the following snippet:
-
-   {% raw %}
-   ```html
-   {% if page.tags %}
-   <small>tags: <em>{{ page.tags | join: "</em> - <em>" }}</em></small>
-   {% endif %}
-   ```
-   {% endraw %}
-
-   We see that it's looking for `page.tags`. [Read the jekyll docs on specifying tags](https://jekyllrb.com/docs/posts/#tags-and-categories). We see that,
-   in our posts' front matter, we can
-   specify either a `tags` key or a `tag` key. For this example, let's set the
-   latter, leading to a blog post that looks like this:
-
-   {% raw %}
-   ```markdown
-   ---
-   tag: lies
-   ---
-
-   This is a blog post called `2020-01-25-My-dog-ate-my-homework.md`.
-   It is a true story about how my dog at my _homework_, **again!**.
-
-   And here is a second paragraph going on about my doggo woes.
-   ```
-   {% endraw %}
-
-   Refresh your blog post webpage (you don't have to restart your server for front-matter changes). You should see that it lists its tag now!
-
-   Multiple tags are left as an exercise to the reader.
-
-
-   #### Adding blog post dates to the blog index
-
-   Spicing up our blog index a little bit, let's list the blog date in the url.
-
-   A post has its date available as a variable, acessible via `.date`. And, the
-   templating language for Jekyll is a fork of the language called Liquid.
-   Liquid includes [_filters_](https://jekyllrb.com/docs/liquid/filters/), including
-   `date_to_string`. We can use it by piping in `post.date` and setting some
-   arguments, like this:
-
-   {% raw %}
-   ```liquid
-   {{ post.title }} | {{ post.date | date_to_string: "ordinal", "US" }}
-   ```
-   {% endraw %}
-
-   Making our blog index look like this:
-
-   {% raw %}
-   ```html
-   ---
-   ---
-
-   <h1>Blog</h1>
-
-   <ul>
-     {% for post in site.posts %}
-     <li>
-       <a href='{{ post.url | relative_url }}'>{{ post.title }}</a>
-     </li>
-     {% endfor %}
-   </ul>
-   ```
-   {% endraw %}
-
-   Not bad!
-
-   #### Add a link to the blog index
-
-   But how will anyone find our blog index? Let's modify `_layouts/default.html`
-   to include a link.
-
-   I added this line at about line 33, after the closing `endif` to the check
-   for whether the site is a github user page, like this:
-
-   {% raw %}
-   ```html
-   ... snipped ...
-
-   {% if site.github.is_user_page %}
-   <p class="view"><a href="{{ site.github.owner_url }}">View My GitHub Profile</a></p>
-   {% endif %}
-
-   <p class='view'><a href="{{ '/blog' | relative_url }}">View my Blog</a></p>
-
-   ... snipped ...
-   ```
-   {% endraw %}
-
-   Refresh your homepage, and you should see a link to your blog post.
-
-   #### Live example
-
-   I forked the `quick-porfolio` theme and made the above changes to it to enable
-   blogging. [View the fork here](https://github.com/deargle/quick-portfolio),
-   and [examine the blog-setting-up commit here](https://github.com/deargle/quick-portfolio/commit/45542845516a11254ba6df62b86cddad95f7b7af).
-
-   #### Conclusion
-
-   The above is an insultingly shallow overview of blogging with jekyll. But it should show you how you can make some small tweaks to your layout to quickly set up with blogging. Hopefully it inspired you! Ask me for clarification and I'll come back and update this doc. Glhf!
+The above is an insultingly shallow overview of blogging with jekyll. But it
+should show you how you can make some small tweaks to your layout to quickly set
+up with blogging. Hopefully it inspired you! Ask me for clarification and I'll
+come back and update this doc. Glhf!
