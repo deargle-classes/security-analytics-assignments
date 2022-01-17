@@ -25,7 +25,7 @@ Create a github account, and make it presentable.
 
 Do the following:
 1.  Choose a username that you won't mind appearing on a resume.
-    * If you want to, you can change your github handle.
+    * Github username are [changeable](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-user-account/managing-user-account-settings/changing-your-github-username).
 1.  Set a nice profile picture for yourself, and set your name and
     organizational affiliation.
     * This helps others know they've found the right account, if they're
@@ -45,20 +45,8 @@ important part of the Unix Philosophy. [Markdown](https://daringfireball.net/pro
 
 Skim [both of these
 guides](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github)
-for an introduction to writing in Markdown on GitHub.
-
-
-## Sign the class website
-
-Once you have completed the "Hello World" project, submit a pull request to edit the
-class repository.
-
-Specifically, sign the class repo `index.md` page (find the site URL on canvas).
-Follow the example already there for "Dave Eargle" -- include a link to your
-github profile, and to your built website (e.g., your
-<em>username.github.io</em>). Once you have opened the pull request, submit a link to your pull requests.
-
-{% include lab_question.html question='Submit a link to your pull requests that edits the class repo.' %}
+for an introduction to writing in Markdown on GitHub. You will need some of this
+later in the lab.
 
 
 
@@ -114,6 +102,18 @@ Under the hood, Github Pages runs a static website generator called
 When you commit code to a github-pages-enabled repo, github runs jekyll against
 it to generate the _static content_ that gets served when you visit the pages
 url.
+
+## Sign the class website yearbook
+
+Once you have completed the "Hello World" project, skimmed the markdown guides, and launched your website, you should be able to sign the class yearbook.
+
+Submit a pull request to edit the class repository.
+
+Specifically, "sign" the class repo `index.md` page (find the yearbook URL on canvas).
+Follow the example already there for "Dave Eargle" -- include a link to your
+github profile (e.g., <https://github.com/deargle>), and to your built website (e.g., <https://deargle.github.io>). Once you have opened the pull request, submit a link to your pull requests.
+
+{% include lab_question.html question='Submit a link to your pull request that signs the class yearbook.' %}
 
 
 
@@ -239,7 +239,7 @@ Jekyll is watching for filesystem changes. Use Atom to make a change to a `.md`
 file in your repo. Confirm that log output shows that the change was detected.
 Refresh the browser to confirm that the update has been applied.
 
-<div class='alert alert-waring'><strong>Heads up!</strong> Jekyll will not
+<div class='alert alert-warning'><strong>Heads up!</strong> Jekyll will not
 auto-regenerate if you modify <code>_config.yml</code>.  You have to restart jekyll
 to pick up changes to that file.</div>
 
@@ -330,6 +330,7 @@ Close the running container with `ctrl+c`.
 
 Take a break :tropical_drink:
 
+{% include lab_question.html question='Submit a screenshot of successfully running `docker-compose up` to launch your website locally.' %}
 
 ## Create a `.gitignore` file
 
