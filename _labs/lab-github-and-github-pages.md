@@ -13,7 +13,7 @@ order: 2
 description: >
 
   Old people say "if you want a job, you must make a good LinkedIn profile." I
-  say pfft. Make a good github (or other hosted code repo) profile instead. DIY ftw.
+  say pfft. Make a good github profile instead (or other hosted code repo profile). DIY ftw.
 ---
 
 
@@ -31,6 +31,7 @@ Do the following:
     * This helps others know they've found the right account, if they're
       searching for you.
 
+**Lab requirement:** Make a github profile following the above guidelines.
 
 ## Do a "Hello World" github project
 
@@ -76,32 +77,62 @@ portfolio-related. If you wanted to
 customize @evanca's theme further, you could follow the same instructions.</p>
 </div>
 
+**Lab requirement:** For this lab, you only need to get a basic website up with a
+picture, your name, and a two-liner something-about-you quip.
 
-## How did that work?! I didn't write any html!
+But over the course of the semester, I'll have you link to at least three portfolio
+pieces to your website. Due dates for those will be separate.
 
-Now that you have some basic github skills, you can create a Github Pages
-website. Time for acronyms!
+
+## How did I make a website without writing HTML?
+
+Time for acronyms! Read this section, it helps to understand stuff later in this lab.
 
 Websites can either be **dynamic**, or **static**.
-* Dynamic websites require a webserver to process requests sent by clients
-  like web browsers. Dynamic sites can interact with a database to load
-  information customized for any given client.
-* Static websites don't require any server-side processing. The same content
-  is sent for each client request.
+* _Dynamic websites_ have a server that **does stuff** _before_ content is sent
+  to browsers. The stuff it does _depends on_ content the browser sends it --
+  like make the browser sends a login token, and the server pulls account info
+  out of a database and returns it for that login. In that way, dynamic websites
+  care about _state_.
+* _Static websites_ don't care who is making the request. Everyone gets the same
+  content. In that way, static websites are _stateless_ (from the server's
+  perspective). (Note that the content can do dynamic stuff _after it arrives_,
+  via javascript, but since the server didn't do anything dynamic it's still a
+  static site.)
 
 Cool vs uncool:
-* It's cool to write **static** blogs.
-* It's cool to have a cool-looking blog.
-* It's _uncool_ to have to cram a bunch of styling information into _each and every static blog page._
-* It's cool to make something else do all the stylization stuff.
+* Bloggers think it's cool to have **static** blogs. Static websites usually
+  load _faster_ than dynamic websites, because there's no dynamic stuff
+  involved.
+* Static websites aren't susceptible to being _hacked_ in the same way that
+  dynamic websites are. Dynamic websites like Wordpress or Drupal sites get
+  pwned all the time because of things like add-ons with vulnerabilities. Some
+  add-on vulns mean that attackers can execute arbitrary code _on the server_,
+  which is a "bad thing."
+* It's cool to have a cool-looking blog. That's one thing that makes dynamic
+  websites cool -- html page content can be dynamically pieced together,
+  permitting cool combinations of stylization and whatnot, with page _content_
+  being pulled separately from stylization, from a database or something.
+* It's _uncool_ to have to cram a bunch of styling information into _each and
+  every static blog page._ That's one downside of static sites -- each request
+  returns a _single file_. That means that every file has to include all
+  stylization information, repeated ad nauseam for each file. Maintenance is a
+  nightmare. It's _cool_ to make something else do all the stylization stuff.
 
-Static Website Generators exist to do all the cool stuff listed above.
+Static Website Generators are the cool answer to all of the above. For writing,
+content is kept separate from stylization. (Content can be written in Markdown.)
+Point the generator at the project, and it will create one html file for each
+possible webpage, merging together stylization and rendered content. Sounds
+great! :sunglasses:
+
 Under the hood, Github Pages runs a static website generator called
-[Jekyll](https://jekyllrb.com/). Jekyll is therefore, by definition, cool.
+[Jekyll](https://jekyllrb.com/). Jekyll is, therefore, cool, by definition.
 
 When you commit code to a github-pages-enabled repo, github runs jekyll against
 it to generate the _static content_ that gets served when you visit the pages
-url.
+url. This happens by default for any pages-enabled github repo, unless you
+explicitly disable jekyll for your repo.
+
 
 ## Sign the class website yearbook
 
@@ -112,6 +143,9 @@ Submit a pull request to edit the class repository.
 Specifically, "sign" the class repo `index.md` page (find the yearbook URL on canvas).
 Follow the example already there for "Dave Eargle" -- include a link to your
 github profile (e.g., <https://github.com/deargle>), and to your built website (e.g., <https://deargle.github.io>). Once you have opened the pull request, submit a link to your pull requests.
+
+**Requirements:** Your github profile and your website should meet the minimum
+"lab requirement" criteria specified in the respective sections above.
 
 {% include lab_question.html question='Submit a link to your pull request that signs the class yearbook.' %}
 
