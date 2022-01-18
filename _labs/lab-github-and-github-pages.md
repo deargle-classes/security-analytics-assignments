@@ -31,7 +31,7 @@ Do the following:
     * This helps others know they've found the right account, if they're
       searching for you.
 
-**Lab requirement:** Make a github profile following the above guidelines.
+<span class='badge badge-primary'>Lab requirement:</span> Make a github profile following the above guidelines.
 
 ## Do a "Hello World" github project
 
@@ -77,7 +77,7 @@ portfolio-related. If you wanted to
 customize @evanca's theme further, you could follow the same instructions.</p>
 </div>
 
-**Lab requirement:** For this lab, you only need to get a basic website up with a
+<span class='badge badge-primary'>Lab requirement:</span> For this lab, you only need to get a basic website up with a
 picture, your name, and a two-liner something-about-you quip.
 
 But over the course of the semester, I'll have you link to at least three portfolio
@@ -144,7 +144,7 @@ Specifically, "sign" the class repo `index.md` page (find the yearbook URL on ca
 Follow the example already there for "Dave Eargle" -- include a link to your
 github profile (e.g., <https://github.com/deargle>), and to your built website (e.g., <https://deargle.github.io>). Once you have opened the pull request, submit a link to your pull requests.
 
-**Requirements:** Your github profile and your website should meet the minimum
+<span class='badge badge-primary'>Requirements:</span> Your github profile and your website should meet the minimum
 "lab requirement" criteria specified in the respective sections above.
 
 {% include lab_question.html question='Submit a link to your pull request that signs the class yearbook.' %}
