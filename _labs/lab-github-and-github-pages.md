@@ -17,6 +17,17 @@ description: >
 ---
 
 
+This lab is split into three parts.
+1. The first two parts do not require any command-line use -- they can be done
+   exclusively from a browser.
+1. The third part requires using the command line to run a docker container.
+   * I'll post an introduction-to-the-command-line page, coming soon.
+
+At the end is a rather lengthy "supplemental" section, with information on
+things like buying and using custom domain names for your website, and blogging
+with jekyll. These are pet topics for me, and they're literally _super cool_.
+Try them if you dare!
+
 # Part 1: Introduction to Github and Markdown
 
 ## Create a nice github account
@@ -160,6 +171,9 @@ internet could see it!
 Cool kids render their websites _locally_ instead, before pushing changes
 _live_. Let's do that, using Docker.
 
+<div class='alert alert-danger'><strong>Heads up!</strong> This section requires command-line usage.
+If that makes you uncomfortable, then do the <a href='{{ site.baseurl }}{% link intro-to-command-line.md %}'>intro to command-line tutorial</a> first.</div>
+
 ## Install a nice text editor
 
 You need a nice text editor. I like [Atom](https://atom.io/). For this lab,
@@ -171,8 +185,7 @@ Next, you need a git client, and why not one that is also github-aware.
 
 1.  Install [GitHub Desktop](https://desktop.github.com/).
 1.  Then, use it to "clone" your github pages repo to your local computer.
-
-    For help, read [this guide](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop).
+    * For help, read [this guide](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop).
 1.  Then, use Github Desktop to open your repo in Atom. You'll edit it there later.
 
 
@@ -242,30 +255,43 @@ docker run --rm \
   jekyll serve
 ```
 
-Understand it first:
-* The command runs image `jekyll/jekyll`, which by default will use the
-  `:latest` tag. That's fine.
-* It will remove (`--rm`) the container when we stop it.
-* The command mounts the current directory `${PWD}` inside the container. This
-  makes your website files available to the container.
-* The command maps container port `4000` to your computer's port `4000`. This
-  means that you can access `http://localhost:4000` to view whatever is being
-  served on that port within the container.
-* The last line is `jekyll serve`. This is the command that the container will
-  ultimately run. It will launch a webserver that will (1) build the website,
-  (2) serve the built website, and (3) watch for new changes so that it can
-  rebuild. It's slick.
+<div class='alert alert-info'><strong>What do the <code>\</code> marks do?</strong> These make it so that a command can be written out over multiple lines, without the newline character triggering the command to execute prematurely. The above command is equivalent to the following:
+
+{% highlight bash %}
+docker run --rm --volume="${PWD}:/srv/jekyll" --publish [::1]:4000:4000 jekyll/jekyll jekyll serve
+{% endhighlight %}
+
+</div>
+
+
+First, understand the command:
+* The command runs image
+  [`jekyll/jekyll`](https://hub.docker.com/r/jekyll/jekyll/), which by default
+  will use the [`:latest`](https://hub.docker.com/r/jekyll/jekyll/tags) tag.
+  That's fine.
+* This will remove (`--rm`) the container when we stop it. This is desirable,
+  since otherwise, each time running the command would create a new container.
+* The `--volume` flag mounts the current directory (`${PWD}`) inside the
+  container. This makes your website files available to the container.
+* The `--publish` flag maps container port `4000` to your computer's port
+  `4000`, available only locally on the host (`[::1]`). This means that you will
+  be able to access <http://localhost:4000> from a browser on the host to view
+  whatever is being served on that port within the container.
+* The last arguments are `jekyll serve`. This is the command that the container
+  will ultimately run. It will launch a webserver that will (1) build the
+  website, (2) serve the built website, and (3) watch for new changes so that it
+  can rebuild. It's slick.
 
 Now, run the earlier `docker` command. <i class="fas fa-rocket"></i>
 
 You notice that the first thing the container does is install a bunch of gems.
-While the iamge _already_ includes a bunch of installed gems, the container
+While the image _already_ includes a bunch of installed gems, the container
 looks inside our `Gemfile` and sees that it needs to install the `github-pages`
 ones.
 
 Yawn, this takes a while.
 
-But once that's done, you should see a message that your site is being served on
+...but once that's done, you should see a message that your site is being served on
 <http://localhost:4000>. Visit that url. Hopefully it's working! If not,
 :no_entry_sign: stop and panic. Otherwise, continue.
 
@@ -407,7 +433,7 @@ site. If it failed to build, you'll get an email with an error message.
 
 
 <div class='alert alert-danger'>
-<strong>Warning!</strong> Web dev is a sinkhole activity! You can spend <em>days</em> on this, at the
+<strong>:warning:Warning!:no_bicycles:</strong> Web dev is a sinkhole activity! You can spend <em>days</em> on this, at the
 expense of your other work. Just stick to getting the basics up, then <em>get out</em>.
 </div>
 
