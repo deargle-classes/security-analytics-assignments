@@ -245,38 +245,40 @@ Now, open a terminal in the directory of your cloned repo.
   {% include lab-image.html image='github-desktop-open-in-command-prompt.png' %}
 
 
-Now, look at the following `docker` command, but don't run it yet.
+Now, look at the following `docker` command, but don't run it yet. First, look at it in
+multi-line form (this multiline form is not valid in Windows shell prompts):
 
 ```bash
-docker run --rm \
+docker run \
+  --rm \
+  -it \
   --volume="${PWD}:/srv/jekyll" \
-  --publish [::1]:4000:4000 \
-  jekyll/jekyll \
+  --publish 4000:4000 \
+  jekyll/jekyll:3.8 \
   jekyll serve
 ```
 
-<div class='alert alert-info'><strong>What do the <code>\</code> marks do?</strong> These make it so that a command can be written out over multiple lines, without the newline character triggering the command to execute prematurely. The above command is equivalent to the following:
+Here is the same command, all on one line:
 
-{% highlight bash %}
-docker run --rm --volume="${PWD}:/srv/jekyll" --publish [::1]:4000:4000 jekyll/jekyll jekyll serve
-{% endhighlight %}
-
-</div>
+```bash
+docker run --rm -it --volume="${PWD}:/srv/jekyll" --publish 4000:4000 jekyll/jekyll:3.8 jekyll serve
+```
 
 
 First, understand the command:
-* The command runs image
-  [`jekyll/jekyll`](https://hub.docker.com/r/jekyll/jekyll/), which by default
-  will use the [`:latest`](https://hub.docker.com/r/jekyll/jekyll/tags) tag.
-  That's fine.
+* The `run` command starts a docker container from image
+  [`jekyll/jekyll`](https://hub.docker.com/r/jekyll/jekyll/) -- specifically,
+  the version tagged as [`3.8`](https://hub.docker.com/r/jekyll/jekyll/tags).
 * This will remove (`--rm`) the container when we stop it. This is desirable,
   since otherwise, each time running the command would create a new container.
-* The `--volume` flag mounts the current directory (`${PWD}`) inside the
+* `-it` gives us an interactive shell which will permit stopping the container
+  via `Ctrl-C`.
+* The `--volume` (equivalent to `-v`) flag mounts the current directory (`${PWD}`) inside the
   container. This makes your website files available to the container.
-* The `--publish` flag maps container port `4000` to your computer's port
-  `4000`, available only locally on the host (`[::1]`). This means that you will
-  be able to access <http://localhost:4000> from a browser on the host to view
-  whatever is being served on that port within the container.
+* The `--publish` (equivalent to `-p`) flag maps container port `4000` to your computer's port
+  `4000`. This means you will be able to access <http://localhost:4000> from a
+  browser on the host to view whatever is being served on that port within the
+  container.
 * The last arguments are `jekyll serve`. This is the command that the container
   will ultimately run. It will launch a webserver that will (1) build the
   website, (2) serve the built website, and (3) watch for new changes so that it
@@ -284,10 +286,10 @@ First, understand the command:
 
 Now, run the earlier `docker` command. <i class="fas fa-rocket"></i>
 
-You notice that the first thing the container does is install a bunch of gems.
-While the image _already_ includes a bunch of installed gems, the container
-looks inside our `Gemfile` and sees that it needs to install the `github-pages`
-ones.
+From the output, you notice that the first thing the container does is install a
+bunch of _gems_. Gems are ruby _packages_. While the image _already_ includes a
+bunch of installed gems, the container looks inside our `Gemfile` and sees that
+it needs to install the `github-pages` ones.
 
 Yawn, this takes a while.
 
@@ -303,9 +305,9 @@ Refresh the browser to confirm that the update has been applied.
 auto-regenerate if you modify <code>_config.yml</code>.  You have to restart jekyll
 to pick up changes to that file.</div>
 
-Close the running container by running `ctrl+c` (I think; or whatever mac equivalent).
+Close the running container by running `Ctrl-C`.
 
-Now, run the earlier docker command again (up-arrow to cycle through your shell's history!).
+Now, run the earlier docker command again (`up`-arrow to cycle through your shell's history!).
 
 Oh no, it has to install the gems again! Why doesn't it remember? Because we
 removed (`--rm`) the image. It starts fresh each time. That's a _feature_ of Docker.
@@ -342,12 +344,7 @@ yet, Docker will create it for us :+1:.
 So, do that, naming the volume something like `my-bundle`:
 
 ```bash
-docker run --rm \
-  --volume="my-bundle:/usr/local/bundle" \
-  --volume="${PWD}:/srv/jekyll" \
-  --publish [::1]:4000:4000 \
-  jekyll/jekyll \
-  jekyll serve
+docker run --rm -it --volume="my-bundle:/usr/local/bundle" --volume="${PWD}:/srv/jekyll" --publish 4000:4000 jekyll/jekyll:3.8 jekyll serve
 ```
 
 Run the command and wait for the gems to install (stored in the volume). Then
@@ -371,7 +368,7 @@ version: '3'
 
 services:
   jekyll:
-    image: jekyll/jekyll
+    image: jekyll/jekyll:3.8
     ports:
       - "4000:4000"
     volumes:
@@ -382,11 +379,12 @@ services:
 
 volumes:
   my-bundle:
+    external: true
 ```
 
 Then, from the shell, call `docker-compose up`, and wait a bit. It should work!
 
-Close the running container with `ctrl+c`.
+Close the running container with `Ctrl-C`.
 
 Take a break :tropical_drink:
 
@@ -463,8 +461,10 @@ Try it for yourself using a browser:
 
 Note that the forked repository follows the above pattern:
 
-    # in _config.yml
-    logo: "/images/logo.png?raw=true"
+```yaml
+# in _config.yml
+logo: "/images/logo.png?raw=true"
+```
 
 Even though the log file stored in their repository's `/images/` folder is named just `logo.png`.
 
