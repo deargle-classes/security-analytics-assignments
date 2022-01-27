@@ -379,3 +379,168 @@ This whole lab is preparation for future labs. So, do the following:
 * Submit a screenshot showing both of the following:
   1. A terminal with your "deploy-ml" environment active
   2. Your github repository open in a browser.
+
+# Merge me in later!
+
+This is content I wrote for another lab, but that I'm now taking out. I want to merge it into this lab later.
+
+# Part 2: Install jupyter via pip into a virtual environment
+
+A good practice when developing in python is to work within a separate [virtual
+environment](https://docs.python.org/3/library/venv.html) for each projects.
+This helps avoid [dependency
+hell](https://en.wikipedia.org/wiki/Dependency_hell). It's difficult to describe
+how horrible dependency hell can be until you've experienced it yourself, so I
+won't try here.
+
+## Make a new folder for your project
+
+First, make a new directory to hold your project. Later, we'll associate this folder
+with a project-specific github repo.
+
+Do not nest this folder within another project folder!
+
+## Create a virtual environment
+
+We'll use the `venv` python module for our virtual environments.
+
+We'll follow the [instructions in the venv documentation](https://docs.python.org/3/library/venv.html#creating-virtual-environments).
+
+From your new project directory, run the following:
+
+```bash
+python3 -m venv venv
+```
+
+* Nowadays, `python3` is better to use for development than python2
+* `python3 -m venv` says we want to use `python3` to run the `venv` python "module" (package).
+* The second `venv` will be the name of the folder to store our virtual environment
+
+
+## Activate the virtual environment
+
+Now, find the section [in the
+documentation](https://docs.python.org/3/library/venv.html#creating-virtual-environments)
+that begins with "Once a virtual environment has been created, it can be
+“activated” using a script in the virtual environment’s binary directory.". Read
+the instructions there to learn how to activate and deactivate your virtual
+environment.
+
+Then, activate your environment.
+
+## Update `pip`
+
+Now that your virtual environment is active, running `python` will point to the executable used to create the python environment (`python3`?)
+
+Also, running `pip` in a virtualenv is equivalent to running `python -m pip`.
+This means that you get a brand-new pip. If at any point you upgraded your
+system's `pip`, you won't have those updates anymore!
+
+So, make sure your `pip` in your virtualenv is up-to-date:
+
+```bash
+pip install --upgrade pip
+```
+
+## Install and launch jupyter
+
+Jupyter packages are available on pip. That means we can [install them into our
+environment](https://jupyter.org/install). Choose one of the following,
+depending on whether you want the (recommended) new hotness, or the old and
+classic jupyter server.
+
+After you run these commands, you will have a jupyter notebook environment with
+basically zero available packages (no `pandas`, no `scipy`, no `seaborn`...
+nothing). But you will have increased knowledge of where jupyter servers come from!
+
+### New hotness
+
+Install:
+```bash
+pip install jupyterlab
+```
+
+Launch:
+```bash
+jupyter-lab
+```
+
+### Old and classic:
+
+Install:
+```bash
+pip install notebook
+```
+
+Launch:
+```bash
+jupyter notebook
+```
+
+
+## Maintain a `requirements.txt` file
+
+You want others to be able to get the same environment of packages as you have.
+
+Create a file called `requirements.txt` in the root of your project dir.
+
+[Read
+more about them in the pip
+docs](https://pip.pypa.io/en/stable/user_guide/#requirements-files).
+
+In this file, manually maintain a list of the packages you have installed -- one
+package per line. So far, that's either `jupyter-lab` or `notebook`. For now,
+don't worry about specifying specific package versions.
+
+So if you had installed `jupyter-lab`, your `requirements.txt` file would now look like this:
+
+```
+jupyter-lab
+```
+
+If someone else wanted to install all of the packages in this file into their environment, they could simply run:
+
+```bash
+pip install -r requirements.txt
+```
+
+Note: Several build tools will look for a file called `requirements.txt` in the root of your project, and if found, will fun `pip install -r requirements.txt` so that your application environment has those packages available. These tools include [Heroku](https://devcenter.heroku.com/articles/python-pip#the-basics) and [Mybinder](https://mybinder.readthedocs.io/en/latest/using/config_files.html#requirements-txt-install-a-python-environment).
+
+## Get it all in git
+
+### Create the repo locally and publish it to GitHub
+
+Let's try a new way of creating a repository on github -- by first creating
+a git repository on your local drive, and then publishing that repo to github.
+
+Use Github Desktop to turn your project-folder into a git repository. To do
+this, you can use the `File` > `New repository...` menu item, pointing it to
+your already-existing directory.
+
+You should then have an option to publish your repo to Github. You can do this
+even if you don't yet have any commits -- Github Desktop creates one for you.
+
+### Create a `README.md`
+
+Only monsters have repos without READMEs. Make one -- have it start with the name
+of your repo. For instance, if my repo were named `FooBar DataScience Notebook`,
+I would start with a README.md with a level-1 header like this:
+
+```markdown
+# Foobar DataScience Notebook
+```
+
+### Create a `.gitignore` file
+
+There are arguments [for and
+against](https://stackoverflow.com/questions/6590688/is-it-bad-to-have-my-virtualenv-directory-inside-my-git-repository)
+including package dependencies in project git repositories. But the arguments
+_for_ aren't relevant for open data science. Which packages get installed via
+`pip` depend in part on the operating system and machine architecture. Don't do
+it.
+
+All of your package dependencies and binaries get installed into the `venv`
+folder. So, add `venv` to a `.gitignore` file in the root of your project. Add
+and commit the file to your git repo.
+
+Then, push (sync) to github if you feel like it.

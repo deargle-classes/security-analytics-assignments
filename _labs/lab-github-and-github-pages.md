@@ -9,7 +9,7 @@ learning_objectives:
   - Use Docker and docker-compose to run jekyll locally; show general ability to
     do containerized app development
 
-order: 2
+order: 1
 description: >
 
   Old people say "if you want a job, you must make a good LinkedIn profile." I
