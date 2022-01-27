@@ -226,6 +226,25 @@ Here's some interpretation tips it:
   following that I guess "fix [file and directory] permissions" to work with
   whatever the `FROM` Docker image expects.
 
+### Create `requirements.txt` and pin your versions
+
+Now create a file called `requirements.txt` that follows the [pip requirements file format](https://classes.daveeargle.com/security-analytics-assignments/labs/lab-python-and-hosted-jupyter.html).
+
+Pin your package version, for the sake of environment reproducibility. To see what the latest version of
+`eli5` is that `pip install eli5` will install, search the internet for `pip eli5` and click
+the link for `https://pypi.org`:
+
+{% include lab-image.html image='google-search-pip-eli5.png' %}
+
+Then, note the package version:
+
+{% include lab-image.html image='pip-eli5-version.png' %}
+
+Then, add a line for that requirement to `requirements.txt`:
+```
+eli5==0.11.0
+```
+
 ### Build your image and run a container
 
 Once you have that Dockerfile, build your own image from it by running the following
@@ -334,7 +353,7 @@ Update your local git repo:
 
 Sync (`push`) your local commits to github.
 
-# Part 4: Use MyBinder
+# Part 3: Use MyBinder
 
 Now you have a Dockerfile in a public github repo. That means we can use
 another free online service called [`MyBinder`](https://mybinder.org/). This
