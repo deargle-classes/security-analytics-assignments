@@ -453,8 +453,7 @@ Your deliverable is to submit a link to your github repo that meets the followin
 Here's a README template to fill in:
 
 
-{% highlight markdown %}
-{% raw %}
+~~~markdown
 # Project Title
 This is a short description of the project. E.g., "This repo is my custom jupyter datascience image..."
 
@@ -491,8 +490,7 @@ docker-compose up
 # - It should mount the local directory as a volume in the container's
 #   home directory
 ```
-{% endraw %}
-{% endhighlight %}
+~~~
 
 {% include lab_question.html question='Submit a link to a github repo that fulfills the above requirements.' %}
 
