@@ -25,72 +25,173 @@ Maybe-viable options include the following:
 
 Let's try all!
 
-## Already-hosted datasets, such as OpenML or UCI ML
+# Already-hosted datasets, such as OpenML or UCI ML
 
-You can use url 'hacking' (h@x0r-ing) to extract direct-download links from places where datasets are already hosted, as long as the download link does not require authentication. (You _could_ still programmatically get links that require authentication, but that doesn't work for Open Data Science without sharing your username-password).
+You can use url 'hacking' (h@x0r-ing) to extract direct-download links from
+places where datasets are already hosted, as long as the download link does not
+require authentication. (You _could_ still programmatically get links that
+require authentication, but that doesn't work for Open Data Science without
+sharing your username-password).
 
-Let's try with an OpenML dataset such as the [spambase dataset](https://www.openml.org/d/44). Look at that dataset page's url:
+## Practice with an OpenML dataset
 
-<https://www.openml.org/d/44>
+Let's try with an OpenML dataset such as the [spambase dataset](https://www.openml.org/d/44).
 
-We intuit that the dataset id is `44`.
+1.  In a web browser, visit <https://www.openml.org/d/44>.
 
-On the dataset's page, there's a cute little cloud download icon with "CSV" under it towards the top right of the page. Hover over it to see the link address. The one for this dataset is the following:
+1.  Look at that dataset page's url:
 
-<https://www.openml.org/data/get_csv/44/dataset_44_spambase.arff>
+    <https://www.openml.org/d/44>
 
-If you click that url, the csv should download.
+    We intuit that the dataset id is `44`.
+1.  On the dataset's page, there's a cute little cloud download icon with "CSV"
+    under it towards the top right of the page. Hover over it to see the link
+    address. The one for this dataset is the following:
 
-What is an `.arff` file, you ask? Well, it doesn't matter, as long as it's structured tabularly or csv-ily. If you can open the downloaded file in e.g. Excel, it will work for [`pd.read_csv`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html) and the like. So forget about it!.
+    <https://www.openml.org/data/get_csv/44/dataset_44_spambase.arff>
 
-Right-click it and select "Copy link adddress" (at least in Chrome, all browsers have something similar).
+    If you click that url, the csv should download.
 
-Paste this url into a new browser tab. If it downloads a csv to your browser, then tada! you have a direct-download link.
+    What is an `.arff` file, you ask? Well, it doesn't matter, as long as it's
+    structured tabularly or csv-ily. If you can open the downloaded file in e.g.
+    Excel, it will work for
+    [`pd.read_csv`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html)
+    and the like. So forget about it!
 
-Imagine you were interested in generalizing the url pattern. Note the URL pattern. It's something like:
+1.  Right-click it and select "Copy link address" (at least in Chrome, all browsers have something similar).
 
-``https://www.openml.org/data/get_csv/<dataset_id>/<some_specific_filename>``
+    Paste this url into a new browser tab. If it downloads a csv to your browser, then tada! you have a direct-download link.
 
-It's easy enough to generalize where to insert the dataset_id, but I'm nervous about the `<some_specific_filename>`. Let's take a guess though and see if the url works _without_ providing the specific filename -- maybe the site's api will default to providing some default csv for the given dataset. Edit the url to just be the following:
+1.  Imagine you were interested in generalizing the url pattern. Note the URL
+    pattern. It's something like:
 
-<https://www.openml.org/data/get_csv/44/>
+    `https://www.openml.org/data/get_csv/<dataset_id>/<some_specific_filename>`
 
-And paste it into a browser. Yay, it works.
+    It's easy enough to generalize where to insert the dataset_id, but I'm
+    nervous about the `<some_specific_filename>`. Let's take a guess though and
+    see if the url works _without_ providing the specific filename -- maybe the
+    site's api will default to providing some default csv for the given dataset.
+    Edit the url to just be the following:
 
-Know that some web servers may be picky about url routing -- for example, it might not work without a trailing slash. We don't know what web server openML is using, but we can black-box test it. Try without a trailing slash:
+    <https://www.openml.org/data/get_csv/44/>
 
-<https://www.openml.org/data/get_csv/44>
+    And paste it into a browser. Yay, it works.
 
-It still works, at least for this site.
+    Know that some web servers may be picky about url routing -- for example, it
+    might not work without a trailing slash. We don't know what web server
+    openML is using, but we can black-box test it. Try without a trailing slash:
 
-What this means is that you could use the above url directly in your script via a call such as:
+    <https://www.openml.org/data/get_csv/44>
+
+    It still works, at least for this site.
+
+    What this means is that you could use the above url directly in your script via a call such as:
+
+    ```python
+    import pandas as pd
+    pd.read_csv('https://www.openml.org/data/get_csv/44')
+    ```
+
+## Note about `sklearn.datasets`
+
+The [`sklearn.datasets`] module has several convenience functions for loading
+datasets, including
+[`fetch_openml`](https://scikit-learn.org/stable/datasets/loading_other_datasets.html#downloading-datasets-from-the-openml-org-repository).
+This uses the OpenML api to programmatically find the download url for a given
+dataset.
+
+In general, if an API exists, it will be more stable for fetching
+files than url hacking will be. You should use APIs when stability matters.
+
+We could use the sklearn.datasets.fetch_openml function to download the spambase dataset as follows:
 
 ```python
-import pandas as pd
-pd.read_csv('https://www.openml.org/data/get_csv/44')
+>>> from sklearn.datasets import fetch_openml
+>>> spam  = fetch_openml(name='spambase')
 ```
+
+The data is available under key `data`:
+
+```python
+>>> spam.data.head()
+   word_freq_make  word_freq_address  word_freq_all  ...  capital_run_length_average  capital_run_length_longest  capital_run_length_total
+0            0.00               0.64           0.64  ...                       3.756                        61.0                     278.0
+1            0.21               0.28           0.50  ...                       5.114                       101.0                    1028.0
+2            0.06               0.00           0.71  ...                       9.821                       485.0                    2259.0
+3            0.00               0.00           0.00  ...                       3.537                        40.0                     191.0
+4            0.00               0.00           0.00  ...                       3.537                        40.0                     191.0
+
+[5 rows x 57 columns]
+```
+
+This particular dataset was converted to a pandas dataframe, since column names were available:
+
+```python
+>>> type(spam.data)
+pandas.core.frame.DataFrame
+```
+
+
+We can pin the version by first inspecting the version of the dataset that was downloaded:
+
+```python
+# what version is this?
+>>> spam.details['version']
+1
+```
+
+And then by modifying our earlier code:
+
+```python
+>>> spam = fetch_openml(name='spambase', version='1')
+```
+
+**N.B.:** `sklearn.datasets` also has a
+[`fetch_kddcup99`](https://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_kddcup99.html#sklearn.datasets.fetch_kddcup99)
+convenience function, which includes the ability to load only 10 percent of the data.
+
+
+# Hosting on your own
 
 If your datasets are not already available publicly somewhere else, you can do one of the following.
 
 ## Uploading small datasets to github
 
-You can host your own datasets that are < 25 MB on github. For demonstration purposes, I committed the above spambase dataset to github. View it at <https://github.com/deargle-classes/security-analytics-assignments/blob/main/datasets/dataset_44_spambase.csv>.
+You can host your own datasets that are < 25 MB on github. For demonstration
+purposes, I committed the above spambase dataset to github. View it at
+<https://github.com/deargle-classes/security-analytics-assignments/blob/main/datasets/dataset_44_spambase.csv>.
 
-I _cannot_ use the above as a direct download link. It would download just what you see in your browser -- an html wrapper around the dataset. I need just the dataset! Github provides a convenient `?raw=true` url argument you can append to get a "raw" file, not-wrapped in html. Append that to the above url, and click it, and see if you get the csv:
+I _cannot_ use the above as a direct download link. It would download just what
+you see in your browser -- an html wrapper around the dataset. I need just the
+dataset!
 
-<https://github.com/deargle-classes/security-analytics-assignments/blob/main/datasets/dataset_44_spambase.csv?raw=true>
+1.  Github provides a convenient `?raw=true` url argument you can append to
+    get a "raw" file, not-wrapped in html.
 
-Hurray, yes you do. Note the resolved url in your address bar after you click the above link:
+    Append that to the above url, and click
+    it, and see if you get the csv:
 
-<https://raw.githubusercontent.com/deargle-classes/security-analytics-assignments/main/datasets/dataset_44_spambase.csv>
+    <https://github.com/deargle-classes/security-analytics-assignments/blob/main/datasets/dataset_44_spambase.csv?raw=true>
 
-We infer that `?raw=true` redirects us to a `raw.githubusercontent.com` path. We _could_ alternatively infer the pattern from the above link, and get the same result in our analytics script.
+    Hurray, yes you do.
 
-_Also_ note that the html-wrapped view of the file has a "raw" button on it, above the dataset to the right. Hover over and inspect where that button would take you:
+1.  Note the resolved url in your address bar after you click the above link:
 
-<https://github.com/deargle-classes/security-analytics-assignments/raw/main/datasets/dataset_44_spambase.csv>
+    <https://raw.githubusercontent.com/deargle-classes/security-analytics-assignments/main/datasets/dataset_44_spambase.csv>
 
-This url says `/raw` instead of `/blob`. Click the url and note that it redirects you to the above `raw.githubusercontent.com` link. You could infer a different workable `/raw` pattern from the above.
+    We infer that `?raw=true` redirects us to a `raw.githubusercontent.com`
+    path. We _could_ alternatively infer the pattern from the above link, and
+    get the same result in our analytics script.
+
+1.  _Also_ note that the html-wrapped view of the file has a "raw" button on it,
+    above the dataset to the right. Hover over and inspect where that button
+    would take you:
+
+    <https://github.com/deargle-classes/security-analytics-assignments/raw/main/datasets/dataset_44_spambase.csv>
+
+    This url says `/raw` instead of `/blob`. Click the url and note that it
+    redirects you to the above `raw.githubusercontent.com` link. You could infer
+    a different workable `/raw` pattern from the above.
 
 (Working as of 2/16/2021).
 
@@ -100,34 +201,42 @@ You can manipulate sharing links from Google Drive or Dropbox to get direct down
 
 ### Google Drive
 
-Using the browser <https://drive.google.com> view, I uploaded the spambase dataset to my personal google drive, in a folder I created called "datasets".
+Using the browser <https://drive.google.com> view, I uploaded the spambase
+dataset to my personal google drive, in a folder I created called "datasets".
 
-Right-click the file and select "Get link." In the popup window, change the access rights to be that "anyone with the link" can view. Copy the link to your clipboard. My link looks like this:
+Right-click the file and select "Get link." In the popup window, change the
+access rights to be that "anyone with the link" can view. Copy the link to your
+clipboard. My link looks like this:
 
 <https://drive.google.com/file/d/19xCOJyKJ-VSCGL-cM2pwY3fCVw-yzMsM/view?usp=sharing>
 
-Our goal is to convert the above into a direct download link. This one is trickier than GitHub's. When I visit the above link in my browser, I see a promising "download" button on the top right. But I don't get a url when I hover over it. Ah, Google Drive using javascript magic!
+Our goal is to convert the above into a direct download link. This one is
+trickier than GitHub's. When I visit the above link in my browser, I see a
+promising "download" button on the top right. But I don't get a url when I hover
+over it. Ah, Google Drive must be using javascript magic!
 
-When I click on the download button, I notice a new tab open, and then close. Like a ninja I copied the url out of the new tab before it closed, and I got this:
+When I click on the download button, I notice a new tab open, and then close.
+Like a ninja I copied the url out of the new tab before it closed, and I got
+this:
 
 <https://drive.google.com/u/0/uc?id=19xCOJyKJ-VSCGL-cM2pwY3fCVw-yzMsM&export=download>
 
-https://drive.google.com/uc?export=download&id=19xCOJyKJ-VSCGL-cM2pwY3fCVw-yzMsM
 
+This url pattern seems harder to generalize from, but I notice that the `id` in
+the second url is also present in the first url. Taking a guess, I'm crossing my
+fingers that the pattern is as simple as the following for all files:
 
-This url pattern seems harder to generalize from, but I notice that the `id` in the second url is also present in the first url. Taking a guess, I'm crossing my fingers that the pattern is as simple as the following for all files, but I would need to confirm!:
+`https://drive.google.com/u/0/uc?id=<id_pulled_from_first_url>&export=download`
 
-``https://drive.google.com/u/0/uc?id=<id_pulled_from_first_url>&export=download``
+But I need to confirm this!
 
 [This SO post](https://webapps.stackexchange.com/questions/33997/is-there-a-direct-download-links-for-files-on-google-drive) says that the url pattern _does_ generalize, with the slightly simpler form as follows:
 
-```
-https://docs.google.com/uc?export=download&id=YourIndividualID
-```
+`https://docs.google.com/uc?export=download&id=YourIndividualID`
 
 ### Dropbox
 
-If you get a public "sharing link" for a file in dropbox and examine the URL, you'll notice that it looks like this:
+If you get a public "sharing link" for a file in Dropbox and examine the URL, you'll notice that it looks like this:
 
 `https://www.dropbox.com/s/611argvbp5dyebw/HealthInfoBreaches.csv?dl=0`
 
@@ -146,19 +255,21 @@ if any, should be extremely minimal (less than 10 cents a month?).
 * Create an AWS account if you don't have one already
 * Navigate to the S3 Service
 * I recommend creating a new bucket if you don't have one already. Its name must be globally unique across all of S3.
-  I created one called `deargle-public-datasets`.
+  I created one using my username, called `deargle-public-datasets`.
 
-  This bucket is intended for open data science replication, so your bucket needs to allow public access. So turn _off_ "Block public access." I left on other bucket defaults.
+  This bucket is intended for open data science replication, so your bucket
+  needs to allow public access. So turn _off_ "Block public access." I left on
+  other bucket defaults.
 
+However, the above on its own will not make your files publicly accessible. It
+just makes it so they _can_ be made publicly accessible.
 
-* However, the above on its own will not make your files publicly accessible. It just
-  makes it so they _can_ be made publicly accessible.
+* On the bucket "Permissions" tab, scroll down to the "Bucket Policy" area.
+  This is the area where you write policies using JSON.
 
-  On the bucket "Permissions" tab, scroll down to the "Bucket Policy" area.
-  This is the area where you write policies using JSON. Click "Edit,"
-  and paste in the following policy, replacing the value for the "Resource"
-  key with the ARN shown for your bucket immediately above the Edit pane.
-  **Leave the trailing `/*` at the end of your resource name.**
+* Click "Edit," and paste in the following policy, replacing the value for the
+  "Resource" key with the ARN shown for your bucket immediately above the Edit
+  pane.  **Leave the trailing `/*` at the end of your resource name.**
 
   ~~~json
   {
@@ -177,50 +288,54 @@ if any, should be extremely minimal (less than 10 cents a month?).
   }
   ~~~
 
-  You will get a lot of very scary warnings about how your bucket is now _public, public public!_. This is desired for our open-data-science use case. **Only upload datasets to this bucket that you want the world to have read-access to.**
+  You will get a lot of very scary warnings about how your bucket is now
+  _public, public public!_. This is desired for our open-data-science use case.
+  **Only upload datasets to this bucket that you want the world to have
+  read-access to.**
 
 Next:
-* upload your dataset to the bucket
-* Navigate to the page for your newly-uploaded file by clicking on the filename. On this page, you can find your
-  file's "Object URL." To test that anyone can access your dataset using this URL, copy-paste this into a browser window in which you are _not_ logged in to AWS (for instance, into an incognito or private browsing window).
+1. Upload your dataset to the bucket
+1. Navigate to the page for your newly-uploaded file by clicking on the filename.
 
-  If you set the policy correctly, your file should download. This means that you can use this url in your analytics script.
+On the file details page, you can find your file's "Object URL."
+
+To test that anyone can access your dataset using this URL, copy-paste this into
+a browser window in which you are _not_ logged in to AWS (for instance, into an
+incognito or private browsing window).
+
+If you set the policy correctly, your file should download. This means that you
+can use this url in your analytics script.
 
 
 ## Google Cloud
 
-Similar to AWS S3, Google Cloud also uses 'buckets' from which you can host public datasets. Relative to AWS, the process to share files from a GCP bucket is extremely simple.
+Similar to AWS S3, Google Cloud also uses 'buckets' from which you can host
+public datasets. Relative to AWS, the process to share files from a GCP bucket
+is extremely simple.
 
 * Create a GCP account if you don't have one already
 * Open your GCP web console (<https://console.cloud.google.com/>), and select a project.
     - Unlike AWS where s3 buckets are specific to accounts, buckets in GCP are specific to _projects_
 * Proceed to Storage -> Browser in the navigation pane and create a new bucket.
     - I created one called `deargle-public-datasets`
-    - For "Choose where to store your data," I left the default
-    - For "Choose a default storage class for your data," I left the default
-    - For "Choose how to control access to objects," I chose _Uniform_
+    - For "Choose where to store your data," I left the default.
+    - For "Choose a default storage class for your data," I left the default.
+    - For "Choose how to control access to objects," I chose _Uniform_.
 * Read and follow the GCP documentation for [Making all objects in the bucket publicly readable](https://cloud.google.com/storage/docs/access-control/making-data-public#buckets). As of 2/20/2021,
   those instructions are the following:
 
-  ![gcp-make-all-objects-in-bucket-publicly-accessible]({{ '/assets/images/gcp-make-all-objects-in-bucket-publicly-accessible.png' | relative_url }})
+  {% include lab-image.html image='gcp-make-all-objects-in-bucket-publicly-accessible.png' %}
+  
 * Ignore all scary warnings about this bucket's public-ness, past present and future
 * Click back to the "Objects" tab and upload your files to your new bucket
 * When the upload is complete, click on the file to view object details. You should see a "Public URL"
   for your dataset. Navigate to this url using a private-browsing window to ensure that
   your dataset is publicly-available.
-* Use this url with `pd.read_csv`.
+* Use this url with `pd.read_csv()`.
 
-## Deliverable
 
-[Use this jupyter notebook template](https://colab.research.google.com/drive/1O-C9cPIDTqSXO62qkcEdKUQxCLAsbSv5?usp=sharing)
+# Deliverable
 
-Share a jupyter notebook in which you demonstrate loading the [OpenML phish_url dataset](https://www.openml.org/d/42641), (~5MB) into a pandas dataframe in **each** of the following ways:
+[Use this jupyter notebook template](https://github.com/deargle-classes/security-analytics-assignments/blob/main/notebooks/Lab_Publicly_Accessible_Datasets___submission_template.ipynb).
 
-* OpenML link
-* GitHub
-* Google Drive or Dropbox or another personal cloud storage method
-* AWS S3 or Google Cloud or another cloud computing storage service
-
-Each method should be in its own cell. The output of each cell should be the dataset.
-
-Use the template deliverable -- make a copy of it and fill it in.
+Follow the instructions in the template notebook to complete and submit your deliverable.
