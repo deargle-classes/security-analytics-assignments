@@ -2,3 +2,6 @@
 *.zip
 *.binetflow
 .ipynb_checkpoints
+*.csv
+*.pkl
+*.json

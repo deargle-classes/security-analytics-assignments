@@ -11,6 +11,7 @@
 # Mini-Labs
 
 * [Downloading datasets with guards](https://github.com/deargle-classes/security-analytics-assignments/blob/main/notebooks/Mini-Lab-download-dataset-with-guard_submission-template.ipynb)
+* [Pickling models](https://github.com/deargle-classes/security-analytics-assignments/blob/main/notebooks/Mini-Lab-pickle-models_submission-template.ipynb)
 
 
 # Pages
