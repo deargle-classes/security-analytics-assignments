@@ -8,6 +8,11 @@
    * [ {{ lab.title }} ]( {{ lab.url | relative_url }})
 {%- endfor %}
 
+# Mini-Labs
+
+* [Downloading datasets with guards](https://github.com/deargle-classes/security-analytics-assignments/blob/main/notebooks/Mini-Lab-download-dataset-with-guard_submission-template.ipynb)
+
+
 # Pages
 
 * [Questions and Answers]({{ '/q-and-a' | relative_url}})
