@@ -450,6 +450,16 @@ Your deliverable is to submit a link to your github repo that meets the followin
     already in the image, such as `eli5`.
   - Should pin the package version.
 
+Here's a bare-minimum example directory tree:
+
+```
+my-datascience-notebook
+├── Dockerfile
+├── README.md
+├── docker-compose.yml
+└── requirements.txt
+```
+
 Here's a README template to fill in:
 
 
