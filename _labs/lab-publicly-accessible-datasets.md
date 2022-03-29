@@ -2,7 +2,7 @@
 title: Lab -- Publicly Accessible Datasets
 learning_objectives:
   - Demonstrate sharing datasets in publicly available ways
-order: 5
+order: 3
 ---
 
 Open data science means that others should be able to rereun your code and replicate your results.
@@ -325,7 +325,7 @@ is extremely simple.
   those instructions are the following:
 
   {% include lab-image.html image='gcp-make-all-objects-in-bucket-publicly-accessible.png' %}
-  
+
 * Ignore all scary warnings about this bucket's public-ness, past present and future
 * Click back to the "Objects" tab and upload your files to your new bucket
 * When the upload is complete, click on the file to view object details. You should see a "Public URL"

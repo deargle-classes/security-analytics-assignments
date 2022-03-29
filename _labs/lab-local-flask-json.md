@@ -1,6 +1,7 @@
 ---
 title: Lab -- A Flask app to run model predictions via JSON
 order: 8
+exclude_from_index: true
 ---
 
 In this lab, you will create a Flask app which will enable users to send

@@ -4,9 +4,15 @@
 # Labs
 
 {% assign labs = site.labs | sort: "order" %}
+<ul>
 {%- for lab in labs %}
-   * [ {{ lab.title }} ]( {{ lab.url | relative_url }})
+{% unless lab.exclude_from_index %}
+<li>
+<a href='{{ lab.url | relative_url }}'>{{ lab.title }}</a>
+</li>
+{% endunless %}
 {%- endfor %}
+</ul>
 
 # Mini-Labs
 
@@ -26,6 +32,7 @@
 
 * [Dealing with Unbalanced Datasets](https://colab.research.google.com/drive/1kUWUFGhZVpoPS7nVVJowl0md49wKP48i?usp=sharing)
 * [Scaling and Standardizing](https://colab.research.google.com/drive/1Km5p17IZ_aCOCMe4WqQTKcdvMwrvfLEi?usp=sharing)
+
 
 # Jupyter Notebooks
 * [scikit-learn pipeline model evaluation plots (ROC and PR-curve)](https://github.com/deargle/deargle.github.io/blob/master/notebooks/ml_model_evaluation.ipynb)

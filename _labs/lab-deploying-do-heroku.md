@@ -1,6 +1,7 @@
 ---
 title: Lab -- Deploying to Heroku
 order: 9
+exclude_from_index: true
 ---
 
 Cloud-hosted machine learning platforms such as AWS Sagemaker and whatever GCP calls theirs

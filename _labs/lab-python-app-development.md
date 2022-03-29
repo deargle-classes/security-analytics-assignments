@@ -4,6 +4,7 @@ learning_objectives:
   - Get python, pip and the like
   - Use python virtual environments
 order: 6
+exclude_from_index: true
 ---
 
 We're working up towards you deploying a python app on heroku, a Flask app, that

@@ -2,7 +2,8 @@
 title: Lab -- Business Analytics Conceptual Competency
 learning_objectives:
   - explain and describe basic concepts of business analytics and machine learning
-order: 4
+order: 100
+exclude_from_index: true
 ---
 
 Your assignment is to read the entirety of _Data Science for Business: What You Need to Know about Data Mining and Data-Analytic Thinking 1st Edition_ ([Amazon Link](https://www.amazon.com/Data-Science-Business-Data-Analytic-Thinking/dp/1449361323))
