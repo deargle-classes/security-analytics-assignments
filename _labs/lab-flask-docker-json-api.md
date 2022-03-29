@@ -73,8 +73,8 @@ def handle_exception(e):
 
 # Deliverable
 
-Make a **new github repository** that contains **only** the following files.
-Submit a link to this repository.
+Make a <span class='badge badge-success'>new github repository</span> that contains <span class='badge badge-danger'>only</span> the following files.
+<span class='badge badge-info'>Submit a link</span> to this repository.
 
 The files should include:
 ```
