@@ -10,6 +10,5 @@ services:
       volumes:
           - .:/srv/jekyll
           - bundle:/usr/local/bundle
-
 volumes:
   bundle:
