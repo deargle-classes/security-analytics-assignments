@@ -32,7 +32,7 @@
 
 * [Dealing with Unbalanced Datasets](https://colab.research.google.com/drive/1kUWUFGhZVpoPS7nVVJowl0md49wKP48i?usp=sharing)
 * [Scaling and Standardizing](https://colab.research.google.com/drive/1Km5p17IZ_aCOCMe4WqQTKcdvMwrvfLEi?usp=sharing)
-
+* [Netflow Outlier Detection (Anomaly Detection)](https://github.com/deargle-classes/security-analytics-assignments/blob/main/notebooks/anomaly-detection.ipynb)
 
 # Jupyter Notebooks
 * [scikit-learn pipeline model evaluation plots (ROC and PR-curve)](https://github.com/deargle/deargle.github.io/blob/master/notebooks/ml_model_evaluation.ipynb)
