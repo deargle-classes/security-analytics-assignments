@@ -144,7 +144,7 @@ Your flask app should have the following routes, **all of which must return JSON
 - [ ] A `GET` route that returns the reverse of a random word
   - named `/word`
   - This route should use the python [`requests`](https://docs.python-requests.org/en/latest/) package to fetch a random word from <https://random-word-api.herokuapp.com/word?number=1>
-  - It should uppercase-transform the word, and then return it
+  - It should reverse the word, and then return it
     - For example, if the random word were "yeet", the route should return "teey"
 - [ ] A `POST` route counts the length of a string
   - named `/string-count`
