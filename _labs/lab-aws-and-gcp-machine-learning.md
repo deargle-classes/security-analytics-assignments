@@ -1,7 +1,7 @@
 ---
 title: Lab -- AWS and GCP Machine Learning
 order: 10
-exclude_from_index: true
+archived: true
 ---
 
 I mentioned in the last lab that machine learning on cloud platforms like AWS

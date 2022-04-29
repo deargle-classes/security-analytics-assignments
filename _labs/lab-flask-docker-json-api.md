@@ -1,8 +1,8 @@
 ---
-title: Lab -- Flask Hello-World
+title: Lab -- Flask Docker JSON API
 description: >
-  A hello-world Docker Flask json api app
-order: 4
+  A hello-world Docker Flask json api app, for noobs.
+order: 44
 ---
 
 Your assignment is to use Docker to create a Flask app that does silly
@@ -131,7 +131,7 @@ This is your Flask app
 
 ### Flask app config
 
-- [ ] In some manner, run the Flask app in *without* the debugger but *with* the reloader.
+- [ ] In some manner, run the Flask app *without* the debugger but *with* the reloader.
 - [ ] Exceptions inside Flask routes should be returned as JSON, with the stacktrace printed to stderr.
 
 

@@ -4,6 +4,7 @@ learning_objectives:
   - Create a resume focused on business analytics
   - Identify analytics-related jobs of interest to them
 order: 100
+archived: true
 ---
 
 ## Write an analytics-focused resume

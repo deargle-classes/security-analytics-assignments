@@ -1,6 +1,7 @@
 ---
 title: Lab -- Pickling ML Models
 order: 7
+archived: true
 ---
 
 Learning objectives: at the completion of the next few labs, have done all of
@@ -178,14 +179,3 @@ Using your dataset, create a github repository with the following files:
 - `test_pickled_model.py`
   Should load your test data and feed it to your unpickled model to get a prediction.
   Should print the prediction.
-
-### Future lab
-
-// create a flask app that loads the pickled model
-
-// create route in your flask app that receives a POST json request with new data,
-// and that returns a prediction for that new data
-
-// Write a script that tests that the flask app works when run locally.
-
-// Deploy your app to heroku. Write a script that tests that the flask app works on heroku.

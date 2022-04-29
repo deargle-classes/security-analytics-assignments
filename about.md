@@ -3,4 +3,6 @@ title: About
 layout: page
 ---
 
-Nothing here yet!
+Not much here yet!
+
+But [here's]({{ site.github.repository_url }}) this site's source-code repo.
