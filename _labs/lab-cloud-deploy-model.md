@@ -251,7 +251,7 @@ Okay, so let's manually enable unauthenticated requests. We have to give "invoke
 
 Retry your web url:
 
-{% include lab-image.html image='lab-cloud-deploy-gcp-cloud-run-permissions-modify.png' caption='' %}
+{% include lab-image.html image='lab-cloud-deploy-gcp-cloud-run-hello-world.png' caption='' %}
 
 Phew, we did it! Holy smokes we did it! We have CI/CD set up for an amazing hello-world!
 
@@ -362,14 +362,14 @@ This file will only be used for local development!
 
 - [ ] Use this `requirements.txt` file:
 
-      ```requirements
-      Flask==2.0.31
-      requests==2.27.1
-      scikit-learn==1.0.2
-      cloudpickle==2.0.0
-      pandas==1.4.0
-      gunicorn==20.1.0
-      ```
+  ```requirements
+  Flask==2.0.31
+  requests==2.27.1
+  scikit-learn==1.0.2
+  cloudpickle==2.0.0
+  pandas==1.4.0
+  gunicorn==20.1.0
+  ```
 
 ## main.py
 
@@ -381,17 +381,18 @@ Dockerfile <code>CMD</code> specified <code>main:app</code> and not <code>app:ap
 ### Config
 
 - [ ] Run the Flask app *without* the debugger but *with* the reloader.
-      - Do this in your docker-compose file, don't set Flask envs in your Dockerfile!
-      - The following environment variables in your docker-compose should work:
-        ```yml
-        environment:
-          FLASK_ENV: development
-          FLASK_DEBUG: 1
-          FLASK_RUN_RELOAD: 1
-          FLASK_RUN_DEBUGGER: 0
-          FLASK_APP: main.py
-          FLASK_RUN_HOST: 0.0.0.0
-        ```
+  - Do this in your docker-compose file, don't set Flask envs in your Dockerfile!
+  - The following environment variables in your docker-compose should work:
+
+    ```yml
+    environment:
+      FLASK_ENV: development
+      FLASK_DEBUG: 1
+      FLASK_RUN_RELOAD: 1
+      FLASK_RUN_DEBUGGER: 0
+      FLASK_APP: main.py
+      FLASK_RUN_HOST: 0.0.0.0
+    ```
 
 - [ ] As in [the flask docker json api lab]({% link _labs/lab-flask-docker-json-api.md %}),
       exceptions inside Flask routes should be returned as JSON, with the stacktrace printed to stderr.
@@ -400,16 +401,16 @@ Dockerfile <code>CMD</code> specified <code>main:app</code> and not <code>app:ap
 
 Your flask app should have the following routes, **all of which must return JSON**:
 - [ ] A `POST` route counts the length of a string
-      - [ ] named `/predict`
-      - expects a `list` of URLs
-      - **Attention!** There are two data-preparation annoyances that should have been dealt with at pipeline-creation
-        time, but alas, you have to deal with them here, in this route.
-        - [ ] Your route must take care of removing **any** protocol in the url
-              - e.g., it must remove things like `http://`, `https://`, `ftp://`, and more.
-              - Hint: use regex
-        - [ ] The pipeline expects every URL to have at least one `/` in it, after the domain. Ensure that it does!
-              - e.g., `yeet.com` would need to be replaced with `yeet.com/`.
-  - returns predictions for whether each URL is a phish, using the following format:
+  - [ ] named `/predict`
+    - expects a `list` of URLs
+    - **Attention!** There are two data-preparation annoyances that should have been dealt with at pipeline-creation
+    time, but alas, you have to deal with them here, in this route.
+      - [ ] Your route must take care of removing **any** protocol in the url
+        - e.g., it must remove things like `http://`, `https://`, `ftp://`, and more.
+        - Hint: use regex
+      - [ ] The pipeline expects every URL to have at least one `/` in it, after the domain. Ensure that it does!
+        - e.g., `yeet.com` would need to be replaced with `yeet.com/`.
+  - [ ] returns predictions for whether each URL is a phish, using the following format:
 
     ```python
     {
