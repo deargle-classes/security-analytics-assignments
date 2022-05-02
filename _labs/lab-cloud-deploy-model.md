@@ -497,4 +497,5 @@ and return a prediction
 1.  Modify the return value format to match the expected format
 1.  Modify the route to handle the `://` and `/` problems
 1.  Deploy your route to Cloud Run
+1.  Do all the README stuff
 1.  ??? Profit
