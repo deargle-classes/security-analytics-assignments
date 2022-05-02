@@ -506,6 +506,29 @@ docker-compose up
 
 # Additional Resources
 
+## Adding a CI/CD GithubAction to deploy to DockerHub
+
+With our current setup of needing to manually and separately run `docker push`
+and `git push`, there's a risk that the two will get out-of-sync.
+We can fix that by adding a Github Action to our repo that will automatically push an
+update to DockerHub every time we push to our github repo.
+
+To do this, see the following resources:
+* [The docker.com guide on using Github Actions](https://docs.docker.com/ci-cd/github-actions/)
+* [The docker-owned `build-push-action` Github Action](https://github.com/docker/build-push-action)
+* [My messy Github Action implementation](https://github.com/deargle/my-datascience-notebook/blob/main/.github/workflows/docker-image.yml)
+
+Tips:
+- Remember to change the "tag" `user/app` to be your DockerHub username and your repo's name.
+- Also see <https://github.com/docker/login-action#docker-hub> for understanding how to
+  authenticate using the `login-action` Action.
+
+Also, see [peter-evans/dockerhub-description](https://github.com/peter-evans/dockerhub-description) to get your repo's README posted
+as your Docker Hub repo's description.
+
+
+## Running a Managed Notebook Instance on GCP
+
 If you need extra computing power, you can run Jupyter Notebooks on cloud
 computing platforms, such as [GCP's Vertex AI *Managed Notebooks Instance*](https://cloud.google.com/vertex-ai/docs/workbench/managed/quickstart-create-console). This service aims to make it ridiculously
 easy to crank up your available resources with just a few clicks, and get them to run in a number of environments.
