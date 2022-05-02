@@ -363,7 +363,7 @@ This file will only be used for local development!
 - [ ] Use this `requirements.txt` file:
 
   ```requirements
-  Flask==2.0.31
+  Flask==2.0.3
   requests==2.27.1
   scikit-learn==1.0.2
   cloudpickle==2.0.0
