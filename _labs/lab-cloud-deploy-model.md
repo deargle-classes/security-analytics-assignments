@@ -400,16 +400,15 @@ Dockerfile <code>CMD</code> specified <code>main:app</code> and not <code>app:ap
 ### Routes
 
 Your flask app should have the following routes, **all of which must return JSON**:
-- [ ] A `POST` route counts the length of a string
-  - [ ] named `/predict`
-    - expects a `list` of URLs
-    - **Attention!** There are two data-preparation annoyances that should have been dealt with at pipeline-creation
-    time, but alas, you have to deal with them here, in this route.
-      - [ ] Your route must take care of removing **any** protocol in the url
-        - e.g., it must remove things like `http://`, `https://`, `ftp://`, and more.
-        - Hint: use regex
-      - [ ] The pipeline expects every URL to have at least one `/` in it, after the domain. Ensure that it does!
-        - e.g., `yeet.com` would need to be replaced with `yeet.com/`.
+- [ ] A `POST` route named `/predict`
+  - expects a `list` of URLs
+  - **Attention!** There are two data-preparation annoyances that should have been dealt with at pipeline-creation
+  time, but alas, you have to deal with them here, in this route.
+    - [ ] Your route must take care of removing **any** protocol in the url
+      - e.g., it must remove things like `http://`, `https://`, `ftp://`, and more.
+      - Hint: use regex
+    - [ ] The pipeline expects every URL to have at least one `/` in it, after the domain. Ensure that it does!
+      - e.g., `yeet.com` would need to be replaced with `yeet.com/`.
   - [ ] returns predictions for whether each URL is a phish, using the following format:
 
     ```python
@@ -479,3 +478,23 @@ for url in urls:
 ## Github Action Workflow
 
 - [ ] You should write a Github Actions workflow that deploys your repo to Cloud Run on push.
+
+## Recommended Path to Completion
+
+This is a big deliverable! Here's a recommendation for how to go about completing it. Test that things are working at each step.
+
+1.  Get the Hello World GCP Cloud Run working
+1.  Get your local flask docker-compose dev environment working.
+    - With live-reloading
+    - with the development server
+    - Without the debugger
+    - With errors caught and printed
+1.  Write a `/predict` route that loads your model, and nothing else
+1.  Modify that route to feed a static url into the model,
+and return a prediction
+1.  Modify that route to get a list of urls from a POST as json, and feed them into the model.
+    - Handpick the URLs to be ones that don't have the protocol and `/` problems
+1.  Modify the return value format to match the expected format
+1.  Modify the route to handle the `://` and `/` problems
+1.  Deploy your route to Cloud Run
+1.  ??? Profit
