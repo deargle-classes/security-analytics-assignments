@@ -4,7 +4,7 @@ order: 99
 description: >
   In this lab, you will deploy a Flask API to GCP serving a sklearn pipeline, using
   Github Actions for continuous integration / continuous delivery (CI/CD), which will redeploy the app on code-push.
-published: false
+published: true
 ---
 
 We'll do this lab assuming you already have a cloudpickle'd pipeline ready to go,
@@ -310,7 +310,7 @@ Use the following model in your app. You can commit the file to your repository.
 
 **Specify in your README where this model came from**
 
-This is a sklearn pipleline. It was fitted using a completed version of [this notebook](https://github.com/deargle-classes/security-analytics-assignments/blob/main/notebooks/lab-pipelines-template.ipynb), and hence:
+This is an sklearn pipleline. It was fitted using a completed version of [this notebook](https://github.com/deargle-classes/security-analytics-assignments/blob/main/notebooks/lab-pipelines-template.ipynb), and hence:
 * it should be unpickled using the `cloudpickle` package
 * it was trained on
   [PhishStorm](https://ieeexplore.ieee.org/abstract/document/6975177) data
@@ -319,10 +319,12 @@ This is a sklearn pipleline. It was fitted using a completed version of [this no
   model as its classifier, and can do `.predict()` (it can't do
   `.predict_proba()`)
 * it expects to be given a pandas df with one column called `domain`
-* each domain is expected to already have the protocol stripped.
+* each url is expected to already have the protocol stripped.
   * For example, `example.com`, not `http://example.com`
-* each domain can also include the path and any query
+* each url can also include the path and any query
   * For example, `example.com/subpath/yeet` is valid.
+* each _domain_ portion of the url must end with a `/`, even if the url does not include a path
+  * For example, `example.com/`, not `example.com`
 
 
 ## README.md
@@ -332,23 +334,14 @@ Minimum contents:
   - Should describe how this is an API, and what it is used for
 - [ ] **The public url that can be used to consume your Cloud Run Services API**
 - [ ] a `docker-compose` command to run your Flask container  
-- [ ] Should have usage examples:
+- [ ] Should have a usage example:
     - [ ] a `docker-compose` command to execute `make-request.py` within a running container.
-    - [ ] an example `curl` command which can be used to hit the API.
-          Use a markdown codeblock like this:
-          ~~~
-          ```bash
-          curl ... ... ... ... ...
-          ```
-          ~~~
-          Hint:
-          - Remember to set JSON content-type headers etc!
 
 ## Dockerfile
 
 You can start from the Dockerfile that is in the [GCP Cloud Run python example][gcp-cloud-run-python-quickstart] -- specifically, [this file](https://github.com/GoogleCloudPlatform/python-docs-samples/blob/HEAD/run/helloworld/Dockerfile).
 
-** Attention! **
+**Attention!**
 
 But you must modify the python version to be the same as what the model was trained with: `python:3.8`
   - [ ] You can use `python:3.8-slim`
@@ -407,10 +400,15 @@ Dockerfile <code>CMD</code> specified <code>main:app</code> and not <code>app:ap
 
 Your flask app should have the following routes, **all of which must return JSON**:
 - [ ] A `POST` route counts the length of a string
-  - named `/predict`
-  - expects a list of URLs
-  - **Attention!** Your route must take care of removing **any** protocol in the url
-    - e.g., it must remove things like `http://`, `https://`, `ftp://`, and more.
+      - [ ] named `/predict`
+      - expects a `list` of URLs
+      - **Attention!** There are two data-preparation annoyances that should have been dealt with at pipeline-creation
+        time, but alas, you have to deal with them here, in this route.
+        - [ ] Your route must take care of removing **any** protocol in the url
+              - e.g., it must remove things like `http://`, `https://`, `ftp://`, and more.
+              - Hint: use regex
+        - [ ] The pipeline expects every URL to have at least one `/` in it, after the domain. Ensure that it does!
+              - e.g., `yeet.com` would need to be replaced with `yeet.com/`.
   - returns predictions for whether each URL is a phish, using the following format:
 
     ```python
@@ -435,14 +433,14 @@ Your flask app should have the following routes, **all of which must return JSON
     ```
 
 
-**All routes should have a docstring**. See
-[pep-257](https://peps.python.org/pep-0257/). You may write any docstring, as
-long as it's somehow route-relevant.
+- [ ] **All routes should have a docstring**. See
+      [pep-257](https://peps.python.org/pep-0257/). You may write any docstring, as
+      long as it's somehow route-relevant.
 
 ## make-request.py
 
 This file should use the [`requests`](https://docs.python-requests.org/en/latest/) library to
-hit your flask app routes.
+hit your flask app `predict` route.
 
 Complete the template below.
 
@@ -455,25 +453,28 @@ urls = [ # all stolen from https://phishingquiz.withgoogle.com/ on 2022-04-27
   'https://efax.hosting.com.mailru382.co/efaxdelivery/2017Dk4h325RE3',
   'https://drive.google.com.download-photo.sytez.net/AONh1e0hVP',
   'https://www.dropbox.com/buy',
-  'http://westmountdayschool.org',
+  'westmountdayschool.org',
   'https://myaccount.google.com-securitysettingpage.ml-security.org/signonoptions/',
   'https://google.com/amp/tinyurl.com/y7u8ewlr',
   'www.tripit.com/uhp/userAgreement'
 ]
 
-# Requirements:
-#
-# Step 1: Make a request:
-# - `post` the urls as `json`
+def do_request(urls):
+  #    1. Make the request
+  #    1. Check the request for errors; handle (print) errors if so
+  #    1. Assuming no errors, print the predicted response
+  pass
 
-# Step 2: Check the request for errors; handle errors if so
+# 1. First, `post` all the urls at the same time
+do_request(urls)
 
-# Step 3: Assuming no errors, print the predicted response
-# - Print these in some way that makes it clear what prediction maps to which url.
-#   How you do that is up to you.
+# 2. Then, loop over the urls and post one at a time.
+for url in urls:
+  do_request([url])
+
 ```
 
 
 ## Github Action Workflow
 
-You should write a Github Actions workflow that deploys your repo to Cloud Run on push.
+- [ ] You should write a Github Actions workflow that deploys your repo to Cloud Run on push.
