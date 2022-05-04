@@ -46,6 +46,8 @@
 - [MSBX5500 Spring 2022 class website](https://classes.daveeargle.com/msbx5500-spring-2022/)
 - [MSBX5500 Spring 2021 class website](https://classes.daveeargle.com/msbx5500-spring-2021/)
 - [MSBX5500 Spring 2020 class Github repo](https://github.com/deargle-classes/msbx5500-spring-2020)
+  - This cohort did an incident response flask app where you could upload pcaps to a mongodb, then run `argus / ra` against
+    then to get netflows, which were fed against ML models ([repo](https://github.com/deargle-classes/msbx5500-spring-2020-project/), [project planning notes](https://github.com/deargle-classes/msbx5500-spring-2020/blob/master/lab-6.md))
 
 # Other
 * [My analytics-related blog posts](https://daveeargle.com/tags#analytics)
